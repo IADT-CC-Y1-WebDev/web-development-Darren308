@@ -26,6 +26,9 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
+        $firstName = "Darren";
+        $lastName = "Carroll";
+        echo "My name is $firstName $lastName";
         // TODO: Write your solution here
         ?>
     </div>
