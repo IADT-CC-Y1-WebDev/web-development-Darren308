@@ -29,7 +29,6 @@
         $firstName = "Darren";
         $lastName = "Carroll";
         echo "My name is $firstName $lastName";
-        // TODO: Write your solution here
         ?>
     </div>
 
@@ -38,7 +37,7 @@
     <p>
         <strong>Task:</strong> 
         Create variables for three product prices and their quantities. 
-        Calculate the subtotal for each product (price × quantity), then 
+        Calculate the subtotal for each product (price * quantity), then 
         calculate the total cost. Apply a 10% discount and display the 
         final price.
     </p>
@@ -46,7 +45,16 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $p1 = "19.99";
+        $p2 = "14.97";
+        $p3 = "49.99";
+        $p1Q = "3";
+        $p2Q = "2";
+        $p3Q = "1";
+        $subtotal = ($p1 * $p1Q) + ($p2 * $p2Q) + ($p3 * $p3Q);
+        $total = ($subtotal/100) * $subtotal;
+        $roundNumber = round($total,2);
+        echo "The total is €$roundNumber";
         ?>
     </div>
 
@@ -61,9 +69,28 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $isStudent = TRUE;
+        $hasDiscount = TRUE;
+        $isPremiumMember = FALSE;
+        if ($isStudent ==TRUE){
+            echo "<p>Student status: Is a Student</p>";
+        }
+        else{
+            echo "<p>Studend status: Not a student</p>";
+        }
+        if ($hasDiscount ==TRUE){
+            echo "<p>Student Discount: Has a discount</p>";
+        }
+        else{
+            echo "<p>Student Discount: No Discount</p>";
+        }
+        if ($isPremiumMember ==TRUE){
+            echo "<p>Member status: Membership active</p>";
+        }
+        else{
+            echo "<p>Member status: No membership</p>";
+        }
         ?>
     </div>
-
 </body>
 </html>

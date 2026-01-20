@@ -26,7 +26,20 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $age = 18;
+        if($age>=0 && $age<=12){
+            $group = "Child";
+        }
+        else if($age>=13 && $age<=19){
+            $group = "Teenager";
+        }
+        else if($age>=20 && $age<=64){
+            $group = "Adult";
+        }
+        else if($age>64){
+            $group = "Senior";
+        }
+        echo "The age group is: $group";
         ?>
     </div>
 
@@ -42,7 +55,33 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $day = rand(1,7);
+        switch ($day){
+            case 1:
+                echo "Monday: First day of the week<br/>";
+                break;
+            case 2:
+                echo "Tuesday: Second day of the week<br/>";
+                break;
+            case 3:
+                echo "Wednesday: Third day of the week<br/>";
+                break;
+            case 4:
+                echo "Thursday: Fourth day of the week<br/>";
+                break;
+            case 5:
+                echo "Friday: Fifth day of the week<br/>";
+                break;
+            case 6:
+                echo "Saturday: Sixth day of the week<br/>";
+                break;
+            case 7:
+                echo "Sunday: Seventh day of the week<br/>";
+                break;
+            default:
+                echo "What!!<br/>";
+                break;
+        }
         ?>
     </div>
 
@@ -57,7 +96,12 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $num = rand(1,10);
+        echo "<p>Number selected: $num</p>";
+        for ($i=1; $i<11; $i++) {
+            $answer = $num * $i;
+            echo "<p>$answer</p>";
+        }
         ?>
     </div>
 
@@ -72,7 +116,15 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $i = 10;
+        while ($i>=0){
+            for($i=10;$i<10;$i--){
+                echo "$i!" 
+            }
+            if ($i==0){
+                    echo "Blast off!";
+                }
+        }
         ?>
     </div>
 
