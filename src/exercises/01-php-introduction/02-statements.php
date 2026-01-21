@@ -116,15 +116,14 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        $i = 10;
-        while ($i>=0){
-            for($i=10;$i<10;$i--){
-                echo "$i!" 
-            }
+        $i = 11;
+        while ($i>=1){
+        $i--;
+        echo "\n$i!";
             if ($i==0){
-                    echo "Blast off!";
+                    echo "\nBlast off!";
                 }
-        }
+            }
         ?>
     </div>
 
