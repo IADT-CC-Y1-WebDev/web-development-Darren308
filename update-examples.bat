@@ -19,7 +19,7 @@ git fetch upstream
 
 echo.
 echo Merging updates...
-git merge upstream/main -m "Update examples from instructor"
+git merge upstream/main --allow-unrelated-histories -m "Update examples from instructor"
 
 if %ERRORLEVEL% EQU 0 (
     echo.
