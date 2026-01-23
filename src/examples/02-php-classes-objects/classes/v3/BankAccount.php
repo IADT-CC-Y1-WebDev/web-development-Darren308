@@ -57,9 +57,14 @@ class BankAccount {
         $this->balance -= $amount;
     }
 
-    public function __destruct() {
+    public function close() {
         if (array_key_exists($this->number, self::$accounts)) {
             unset(self::$accounts[$this->number]);
         }
+        echo "Account closed for {$this->name}<br>";
+    }
+
+    public function __destruct() {
+        echo "Account destroyed for {$this->name}<br>";
     }
 }
