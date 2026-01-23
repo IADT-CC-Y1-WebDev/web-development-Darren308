@@ -54,11 +54,12 @@
     </ul>
     <p>
         In Exercise 1, the static <code>$counter</code> property was added to keep a count the number of students. This property is now redundant because
-        we can simply use <code>count(Student::findAll())</code> to get the number of students.
+        we can simply use <code>count(Student::findAll())</code> to get the number of students. Modify your <code>Student</code> class as follows:
     </p>
-    <p>
-        Modify your <code>Student</code> class to remove the static <code>$counter</code> property and rewrite <code>getCount()</code> to return the count of students
-        using <code>count(self::$students)</code>.
+    <ul>
+        <li>Remove the static <code>$count</code> property</li>
+        <li>Remove the increment of <code>self::$count</code> from the constructor</li>
+        <li>rewrite <code>getCount()</code> to return the count of students using <code>count(self::$students)</code>.
     </p>
     <p>
         Create three students and then use <code>Student::findAll()</code> to display
