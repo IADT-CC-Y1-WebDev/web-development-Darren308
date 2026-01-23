@@ -69,7 +69,6 @@
     <ol>
         <li>Copy <code>Undergrad.php</code> and <code>Postgrad.php</code> into the <code>classes/College/</code> folder</li>
         <li>Add <code>namespace College;</code> to each file</li>
-        <li>Remove the <code>require_once</code> statements from these files (they won't work with namespaces - we'll fix this with autoloading in the next exercise)</li>
     </ol>
     <p>
         Require all three files and use <code>use</code> statements to import them.
