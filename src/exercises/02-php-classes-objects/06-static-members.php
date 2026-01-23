@@ -89,16 +89,24 @@
     </div>
 
     <!-- Exercise 4 -->
-    <h2>Exercise 4: Removing from Registry with __destruct()</h2>
+    <h2>Exercise 4: Removing from Registry</h2>
     <p>
         <strong>Task:</strong>
-        Modify the <code>__destruct()</code> method your <code>Student</code> class so that
-        it removes the student from the static <code>$students</code> array using 
-        <code>unset(self::$students[$this->number])</code>
+        Add the following to your <code>Student</code> class:
+    </p>
+    <ul>
+        <li>A <code>leave()</code> method that removes the student from the static <code>$students</code> array using <code>unset(self::$students[$this->number])</code></li>
+        <li>A <code>__destruct()</code> method that prints "Student [name] has been destroyed"</li>
+    </ul>
+    <p>
+        Create three students, display the count, then call <code>leave()</code> and <code>unset()</code>
+        on one student. Display the count again to confirm they were removed.
     </p>
     <p>
-        Create three students, display the count, then use <code>unset()</code> to destroy
-        one of them. Display the count again to confirm the student was removed from the registry.
+        <strong>Why both methods?</strong> The static array holds a reference to each object.
+        PHP only calls <code>__destruct()</code> when <em>all</em> references are gone, so we must
+        call <code>leave()</code> first to remove from the array, then <code>unset()</code> to
+        trigger <code>__destruct()</code>.
     </p>
 
     <p class="output-label">Output:</p>
