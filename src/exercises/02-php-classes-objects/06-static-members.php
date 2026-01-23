@@ -60,7 +60,7 @@
         <li>Remove the static <code>$count</code> property</li>
         <li>Remove the increment of <code>self::$count</code> from the constructor</li>
         <li>rewrite <code>getCount()</code> to return the count of students using <code>count(self::$students)</code>.
-    </p>
+    </ul>
     <p>
         Create three students and then use <code>Student::findAll()</code> to display
         all students. Use <code>Student::findByNumber()</code> to find a specific
