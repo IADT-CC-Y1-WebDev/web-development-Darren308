@@ -70,7 +70,19 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $country = [
+            "Mexico" => "Mexico City",
+            "UK" => "London",
+            "Italy" => "Rome",
+            "Australia" => "Canberra",
+            "Spain" => "Madrid"
+        ];
+        $text =
+        "{$country['Mexico']} is the capital of Mexico." . "\n{$country['UK']} is the capital of the UK." . 
+        "\n{$country['Italy']} is the capital of Italy." . "\n{$country['Australia']} is the capital of Australia." . 
+        "\n{$country['Spain']} is the capital of Spain.";
+
+        print("<p>$text</p>");
         ?>
     </div>
 
@@ -87,7 +99,26 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $restaurant = [
+            'Starters' => [
+                'Soup' => "€4.95",
+                'Nachos' => "€7.95",
+                'Bread' => "€0",
+            ],
+            'Mains' => [
+                'Steak' => "€14.99",
+                'Salmon' => "€15.99",
+                'Fish and Chips' => "€15.99",
+            ],
+            ];
+            foreach ($restaurant as $section => $items) {
+                echo "<p>" . ucfirst($section) . " restaurant:</p>";
+                echo "<ul>";
+                foreach ($items as $key => $value) {
+                    echo "<li>$key\t($value)</li>";
+                }
+                echo "</ul>";
+            }
         ?>
     </div>
 

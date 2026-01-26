@@ -26,7 +26,15 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        echo "<pre>";
+        print_r($_SERVER["PHP_SELF"]);
+        echo "<br>";
+        print_r($_SERVER["REQUEST_METHOD"]);
+        echo "<br>";
+        print_r($_SERVER["HTTP_HOST"]);
+        echo "<br>";
+        print_r($_SERVER["HTTP_USER_AGENT"]);
+        echo "</pre>";
         ?>
     </div>
 
@@ -42,7 +50,9 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        print('$_GET = ');
+        
+        print_r($_GET['name']);
         ?>
     </div>
 

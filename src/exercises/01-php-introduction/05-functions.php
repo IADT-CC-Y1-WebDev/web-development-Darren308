@@ -24,7 +24,11 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        function celsiusToFahrenheit() {
+            $celsius = 20;
+            echo $fahrenheit = ($celsius * 9/5) + 32;
+        }
+        celsiusToFahrenheit();
         ?>
     </div>
 
@@ -40,7 +44,12 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        function calculateRectangleArea(){
+            $height = rand(1,50);
+            $width = rand(1,50);
+            echo $area = $height * $width;
+        }
+        calculateRectangleArea();
         ?>
     </div>
 
@@ -56,7 +65,17 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        function checkEvenOdd(){
+            $num = rand(1,9999);
+            $check = $num %2;
+            if ($check == 0){
+                echo "$num is Even";
+            }
+            else{
+                echo "$num is Odd";
+            }
+        }
+        checkEvenOdd();
         ?>
     </div>
 
@@ -72,7 +91,14 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        function getArrayStats(){
+            $num1 = rand(1,10);
+            $num2 = rand(1,10);
+            $num3 = rand(1,10);
+            if ($num1>$num2 && $num1>$num3){
+                
+            }
+        }
         ?>
     </div>
 
