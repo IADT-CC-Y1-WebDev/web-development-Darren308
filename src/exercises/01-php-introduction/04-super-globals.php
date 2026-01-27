@@ -50,9 +50,16 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        print('$_GET = ');
-        
-        print_r($_GET['name']);
+        echo '<pre>';
+        print_r($_GET);
+        echo '</pre>';
+        if (isset($_GET['name'])) {
+            $name = $_GET['name'];
+        }
+        else {
+            $name = "Guest";
+        }
+        echo "Hello, $name";
         ?>
     </div>
 
@@ -69,7 +76,14 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        if (isset($_Get['product']) && isset($_Get['quantity'])) {
+            $product = $_Get['product'];
+            $quantity = $_Get['quantity'];
+            echo "You ordered ['quantity']['product'](s)";
+        }
+        else{
+            echo "Error";
+        }
         ?>
     </div>
 

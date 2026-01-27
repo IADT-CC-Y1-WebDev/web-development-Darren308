@@ -25,7 +25,7 @@
     <div class="output">
         <?php
         function celsiusToFahrenheit() {
-            $celsius = 20;
+            $celsius = rand(0,50);
             echo $fahrenheit = ($celsius * 9/5) + 32;
         }
         celsiusToFahrenheit();
@@ -95,12 +95,33 @@
             $num1 = rand(1,10);
             $num2 = rand(1,10);
             $num3 = rand(1,10);
+            echo "<p>First number: $num1</p>" . "<p>Second number: $num2</p>" . "<p>Third number: $num3</p>";
             if ($num1>$num2 && $num1>$num3){
-                
+                echo "<p>argest number is $num1</p>";
+                if ($num2>$num3){
+                    echo "<p>Smallest number is $num3</p>";
+                }
+                else{
+                    "<p>Smallest number is $num2</p>";
+                }
             }
+            else if ($num2>$num1 && $num2>$num3){
+                echo "<p>Largest number is $num2</p>";
+                if ($num1>$num3){
+                    echo "<p>smallest number is $num3</p>";
+                }
+                else{
+                    echo "<p>smallest number is $num1</p>";
+                }
+            }
+            else{
+                echo "<p>Largest number is $num3</p>";
+            }
+            $average = ($num1 + $num2 + $num3)/3;
+            echo "<p>The average of the 3 numbers is: $average</p>";
         }
+        getArrayStats();
         ?>
     </div>
-
 </body>
 </html>
