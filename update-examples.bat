@@ -4,7 +4,7 @@ REM Run this when your instructor announces new content
 
 REM ============================================================
 REM INSTRUCTOR: Replace this URL with your template repository
-set UPSTREAM_URL=https://github.com/INSTRUCTOR/REPO-NAME.git
+set UPSTREAM_URL=https://github.com/john-dempsey/web-development-template.git 
 REM ============================================================
 
 REM Check if upstream remote exists, add it if not
@@ -14,12 +14,11 @@ if %ERRORLEVEL% NEQ 0 (
     git remote add upstream %UPSTREAM_URL%
 )
 
-echo Fetching updates from instructor...
 git fetch upstream
-
-echo.
-echo Merging updates...
-git merge upstream/main -m "Update examples from instructor"
+git merge upstream/main --allow-unrelated-histories --strategy=ours -m "Keep local changes, add new content"
+git checkout upstream/main -- $(git diff --name-only --diff-filter=A HEAD..upstream/main)
+git add .
+git commit -m "Added new exercises from instructor"
 
 if %ERRORLEVEL% EQU 0 (
     echo.
