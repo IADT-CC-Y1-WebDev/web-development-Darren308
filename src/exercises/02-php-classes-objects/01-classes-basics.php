@@ -31,9 +31,7 @@
     <div class="output">
         <?php
         require_once __DIR__ . '/classes/Student.php';
-        $student = new Student();
-        $student ->name = "Darren Carroll";
-        $student ->number = "N00255308";
+        $student = new Student("Darren Carroll:" , " N00255308");
         echo "Student: " . $student->number;
         echo ", Name: " . $student->name;
         ?>
@@ -55,16 +53,11 @@
     <div class="output">
         <?php
         require_once __DIR__ . '/classes/Student.php';
-        $student = new Student();
-        $student ->name = "Darren Carroll";
-        $student ->number = " N00255308";
-        $student2 = new Student();
-        $student2 ->name = "John Doe";
-        $student2 ->number = " N11366419";
+        $student = new Student("Darren Carroll:"," N00255308");
+        $student2 = new Student("John Doe:"," N11366419");
         echo "<p>First student: </p>" . $student->name . $student->number;
         echo "<p>Second student: </p>" . $student2->name . $student2->number;
-        // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+
         ?>
     </div>
 

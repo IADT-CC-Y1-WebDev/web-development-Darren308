@@ -9,6 +9,8 @@ class Student{
         $this->number = $num;
     }
 
+    public function
+
     
 
 }

@@ -27,7 +27,22 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $number = rand(-20,20);
+        function calculatesquareRoot($number){
+            if ($number<0){
+                throw new Exception("Number is invalid");
+            }
+            return $number;
+        }
+
+        try{
+            $answer = calculatesquareRoot($number);
+            echo "Square root of $number is $answer";
+        }
+
+        catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
         ?>
     </div>
 
@@ -44,7 +59,10 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        $email = "user@example.com";
+        function validateEmail($email){
+            
+        }
         ?>
     </div>
 
