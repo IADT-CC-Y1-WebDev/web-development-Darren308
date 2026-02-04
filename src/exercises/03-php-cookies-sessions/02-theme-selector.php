@@ -11,7 +11,9 @@
 // Hint: Check if session is not already started, then call session_start()
 // -----------------------------------------------------------------------------
 // TODO: Start the session here
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // =============================================================================
 
 // =============================================================================
@@ -23,7 +25,16 @@
 // 4. Call exit
 // -----------------------------------------------------------------------------
 // TODO: Handle cookie theme selection here
+if (isset($_GET['cookie_theme'])) {
+    $theme = $_GET['cookie_theme'];
 
+    // Store in cookie for 30 days
+    setcookie('theme', $theme, time() + (60 * 60 * 24 * 30), '/');
+
+    // Redirect to remove the query parameter
+    header('Location: 02-theme-selector.php');
+    exit;
+}
 // =============================================================================
 
 // =============================================================================
@@ -35,8 +46,17 @@
 // 4. Call exit
 // -----------------------------------------------------------------------------
 // TODO: Handle session theme selection here
+if (isset($_GET['session_theme'])) {
+    $theme = $_GET['session_theme'];
 
+    $_SESSION['theme'] = $theme;
+
+    // Redirect to remove the query parameter
+    header('Location: 02-theme-selector.php');
+    exit;
+}
 // =============================================================================
+
 
 // =============================================================================
 // Exercise 4: Handle reset actions
@@ -44,7 +64,19 @@
 // For $_GET['reset_session']: unset $_SESSION['theme']
 // -----------------------------------------------------------------------------
 // TODO: Handle reset actions here
+if (isset($_GET['reset_cookie'])) {
+    $now = time();
+    $expiry = $time - 3600;
+    setcookie('theme', '', $expiry, '/');
+    header('Location: 02-theme-selector.php');
+    exit;
+}
 
+if (isset($_GET['reset_session'])) {
+    unset($_SESSION['theme']);
+    header('Location: 02-theme-selector.php');
+    exit;
+}
 // =============================================================================
 
 // Get current theme values (these are provided for you)

@@ -15,11 +15,13 @@
 // -----------------------------------------------------------------------------
 // TODO Exercise 1: Write your solution here
 
-if (isset($_COOKIE['visit_count'])){
+if (isset($_COOKIE['visit_count'])) {
     $visitCount = (int)$_COOKIE['visit_count'];
-} else{
+}
+else {
     $visitCount = 0;
 }
+
 $visitCount++;
 $expiryTime = time() + (60*60*24*30);
 setcookie('visit_count', $visitCount, $expiryTime, '/');
@@ -50,10 +52,11 @@ if (isset($_GET['reset'])){
 // TODO Exercise 4: Write your solution here
 if (isset($_COOKIE['last_visit'])){
     $visitCount = (int)$_COOKIE['last_visit'];
-} else{
+} 
+else{
     $visitCount = 0;
 }
-$now = date('Y-m-d H-i-s');
+$now = date('Y-m-d H:i:s');
 $expiry = time() + 60 * 60 * 24 * 30; 
 setcookie('last_visit', $now, $expiry, '/');
 // =============================================================================
@@ -129,12 +132,6 @@ setcookie('last_visit', $now, $expiry, '/');
     <div class="output">
         <p><a href="01-visit-counter.php">Refresh Page</a></p>
         <p><a href="01-visit-counter.php?reset=1">Reset Counter</a></p>
-        <?php
-        if (isset($_COOKIE['Reset Counter'])){
-            $expiryTime = time() + (60*60*24*30);
-            setcookie('visit_count', 1, $expiryTime, '/');
-        };
-        ?>
     </div>
 
     <!-- Exercise 4: Bonus - Track Last Visit -->
@@ -154,11 +151,6 @@ setcookie('last_visit', $now, $expiry, '/');
 
     <p class="output-label">Output:</p>
     <div class="output">
-        <?php
-        $visitCount = isset($_COOKIE['visit_count']) ? (int)$_COOKIE['visit_count'] : 0;
-        $visitCount++;
-        setcookie('visit_count', $visitCount, $expiryTime, '/');
-        ?>
     </div>
 
 </body>
