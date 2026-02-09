@@ -31,13 +31,11 @@ $cart = ShoppingCart::getInstance();
 // 3. Redirect back to cart.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
-if (isset($_GET['add'])) {
-    $id = (int)$_GET['add'];
-    $product = Product::findById($id);
-    if ($product !== null) {
+if (isset($_GET['remove'])) {
+    $id = (int)$_GET['remove'];
         $cart->remove($id);
-    }
-    header("loaction: cart.php");
+
+    header("location: cart.php");
     exit();
 }
 // =============================================================================
@@ -49,7 +47,12 @@ if (isset($_GET['add'])) {
 // 2. Redirect back to cart.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
-
+if (isset($_GET['clear'])) {
+        $cart->clear($id);
+        
+    header("location: cart.php");
+    exit();
+}
 // =============================================================================
 
 // =============================================================================

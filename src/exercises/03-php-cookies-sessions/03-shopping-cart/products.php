@@ -44,7 +44,7 @@ if (isset($_GET['add'])) {
     if ($product !== null) {
         $cart->add($product);
     }
-    header("loaction: products.php");
+    header("location: products.php");
     exit();
 }
 // =============================================================================
