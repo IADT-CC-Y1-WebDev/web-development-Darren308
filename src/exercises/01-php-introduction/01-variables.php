@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/01-variables.php">View Example &rarr;</a>
     </div>
 
-    <h1>Variables Exercises</h1>
+    <h1>Variables Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Personal Information</h2>

@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/04-super-globals.php">View Example &rarr;</a>
     </div>
 
-    <h1>Super Globals Exercises</h1>
+    <h1>Super Globals Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Server Information</h2>

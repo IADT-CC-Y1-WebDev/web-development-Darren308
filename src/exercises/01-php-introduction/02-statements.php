@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/02-statements.php">View Example &rarr;</a>
     </div>
 
-    <h1>Statements Exercises</h1>
+    <h1>Statements Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Age Classifier</h2>

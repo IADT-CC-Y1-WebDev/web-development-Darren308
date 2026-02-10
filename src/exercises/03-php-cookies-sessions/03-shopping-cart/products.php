@@ -109,7 +109,7 @@ $cartCount = isset($cart) ? $cart->getCount() : 0;
         <a href="/examples/03-php-cookies-sessions/03-shopping-cart/products.php">View Example &rarr;</a>
     </div>
 
-    <h1>Shopping Cart Exercise - Products</h1>
+    <h1>Shopping Cart Exercise - Products ✓</h1>
 
     <!-- Navigation -->
     <div class="nav-bar">

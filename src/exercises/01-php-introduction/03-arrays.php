@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/03-arrays.php">View Example &rarr;</a>
     </div>
 
-    <h1>Arrays Exercises</h1>
+    <h1>Arrays Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Favorite Movies</h2>

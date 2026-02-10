@@ -8,9 +8,4 @@ class Student{
         $this->name = $name;
         $this->number = $num;
     }
-
-    public function
-
-    
-
 }

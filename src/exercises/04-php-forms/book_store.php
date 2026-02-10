@@ -24,6 +24,8 @@ $errors = [];
 // Start the session
 startSession();
 
+
+
 try {
     // =========================================================================
     // STEP 1: View Posted Data
@@ -59,7 +61,9 @@ try {
         'year' => $_POST['year'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
         'description' => $_POST['description'] ?? null,
-        'format_ids' => $_POST['format_ids'] ?? null
+        'format_ids' => $_POST['format_ids'] ?? null,
+        'cover' => $_FILES['cover'] ?? null
+
     ];
 
     dd($data);
@@ -79,8 +83,9 @@ try {
         'publisher_id' => 'required|notempty|integer',
         'year' => 'required|notempty|minvalue:1900|maxvalue:' . $year,
         'isbn' => 'required|notempty|min:13|max:13',
-        'description' => 'required|notempty|array|min:1|max:4',
-        'format_ids' => 'required|notempty|min:10'
+        'format_ids' => 'required|notempty|array|min:1|max:4',
+        'description' => 'required|notempty|min:10',
+        'cover' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
      ];
      $validator = new Validator ($data, $rules);
 
@@ -90,6 +95,9 @@ try {
         }
         throw new Exception('Validation failed.');
     }
+
+    $uploader = new ImageUpload();
+    $imageFilename = $uploader->process($_FILES['cover']);
 
     echo "Validation Successful";
     // =========================================================================

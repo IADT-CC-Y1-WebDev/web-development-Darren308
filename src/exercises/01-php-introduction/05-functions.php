@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/05-functions.php">View Example &rarr;</a>
     </div>
 
-    <h1>Functions Exercises</h1>
+    <h1>Functions Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Temperature Converter</h2>

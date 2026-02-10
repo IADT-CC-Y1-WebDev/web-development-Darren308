@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/06-scope.php">View Example &rarr;</a>
     </div>
 
-    <h1>Scope Exercises</h1>
+    <h1>Scope Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Global Counter</h2>

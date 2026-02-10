@@ -143,7 +143,7 @@ $themes = [
         <a href="/examples/03-php-cookies-sessions/02-theme-selector.php">View Example &rarr;</a>
     </div>
 
-    <h1>Theme Selector Exercise</h1>
+    <h1>Theme Selector Exercise ✓</h1>
 
     <!-- Exercise 1: Session Setup -->
     <h2>Exercise 1: Start the Session</h2>

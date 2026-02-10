@@ -75,7 +75,7 @@ setcookie('last_visit', $now, $expiry, '/');
         <a href="/examples/03-php-cookies-sessions/01-visit-counter.php">View Example &rarr;</a>
     </div>
 
-    <h1>Visit Counter Exercise</h1>
+    <h1>Visit Counter Exercise ✓</h1>
 
     <!-- Exercise 1: Basic Visit Counter -->
     <h2>Exercise 1: Display Visit Count</h2>

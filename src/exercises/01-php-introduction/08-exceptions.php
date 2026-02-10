@@ -61,7 +61,10 @@
         <?php
         $email = "user@example.com";
         function validateEmail($email){
-            
+            if (!str_contains($email, '@')) {
+                throw new Exception("Invalid email: missing @ symbol");
+            }
+            return $email
         }
         ?>
     </div>
