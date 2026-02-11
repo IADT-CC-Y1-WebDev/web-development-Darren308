@@ -86,6 +86,5 @@
         testScope();
         ?>
     </div>
-
 </body>
 </html>

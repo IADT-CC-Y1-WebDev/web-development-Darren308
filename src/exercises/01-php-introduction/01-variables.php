@@ -57,7 +57,6 @@
         echo "The total is €$roundNumber";
         ?>
     </div>
-
     <!-- Exercise 3 -->
     <h2>Exercise 3: User Status</h2>
     <p>

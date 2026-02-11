@@ -1,5 +1,4 @@
 <?php
-
 class Validator {
     private $data;
     private $rules;

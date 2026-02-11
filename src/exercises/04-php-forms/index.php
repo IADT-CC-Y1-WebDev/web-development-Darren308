@@ -38,10 +38,8 @@ startSession();
         </ul>
 
         <hr>
-
         <h2>Implementation Steps</h2>
         <p>Work through each step in order. The starter files (<code>book_create.php</code> and <code>book_store.php</code>) contain TODO comments and hints for each step.</p>
-
         <table>
             <thead>
                 <tr>
@@ -116,7 +114,6 @@ startSession();
         </table>
 
         <hr>
-
         <h2>Validation Rules Reference</h2>
         <p>Use these rules with the <code>Validator</code> class:</p>
         <table>
@@ -133,7 +130,6 @@ startSession();
         </table>
 
         <hr>
-
         <h2>Helper Functions Reference</h2>
         <table>
             <tr><td><code>dd($var)</code></td><td>Dump and display variable for debugging</td></tr>
@@ -150,7 +146,6 @@ startSession();
         </table>
 
         <hr>
-
         <h2>Files</h2>
         <ul>
             <li><code>book_create.php</code> - The registration form (display)</li>

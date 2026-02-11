@@ -1,5 +1,4 @@
 <?php
-
 // Categories for the select dropdown
 $categories = [
     ['id' => 1, 'name' => 'Electronics'],

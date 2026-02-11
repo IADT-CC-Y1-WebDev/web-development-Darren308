@@ -14,6 +14,6 @@ function getCurrentYear(){
     echo date('Y');
 }
 
-truncate();
-formatPrice();
+truncate('Hello');
+formatPrice(500);
 getCurrentYear();

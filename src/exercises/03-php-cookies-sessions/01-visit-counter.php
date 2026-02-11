@@ -21,7 +21,6 @@ if (isset($_COOKIE['visit_count'])) {
 else {
     $visitCount = 0;
 }
-
 $visitCount++;
 $expiryTime = time() + (60*60*24*30);
 setcookie('visit_count', $visitCount, $expiryTime, '/');
@@ -152,6 +151,5 @@ setcookie('last_visit', $now, $expiry, '/');
     <p class="output-label">Output:</p>
     <div class="output">
     </div>
-
 </body>
 </html>

@@ -7,8 +7,6 @@
  *
  * This file processes the form submission from book_create.php
  */
-
-
 // =============================================================================
 // Write your code here
 // =============================================================================
@@ -24,15 +22,13 @@ $errors = [];
 // Start the session
 startSession();
 
-
-
 try {
     // =========================================================================
     // STEP 1: View Posted Data
     // See: /examples/04-php-forms/step-01-form-submission/
     // =========================================================================
     // TODO: First, just dump the posted data to see what's submitted
-    dd($_POST);
+    //dd($_POST);
 
     // =========================================================================
     // STEP 2: Check Request Method
@@ -42,7 +38,6 @@ try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Invalid request method.');
     }
-
     // =========================================================================
     // STEP 3: Extract Data
     // See: /examples/04-php-forms/step-03-data-extraction/
@@ -63,11 +58,8 @@ try {
         'description' => $_POST['description'] ?? null,
         'format_ids' => $_POST['format_ids'] ?? null,
         'cover' => $_FILES['cover'] ?? null
-
     ];
-
-    dd($data);
-
+    //dd($data);
     // =========================================================================
     // STEP 4: Validate Data
     // See: /examples/04-php-forms/step-04-validation/
@@ -99,7 +91,7 @@ try {
     $uploader = new ImageUpload();
     $imageFilename = $uploader->process($_FILES['cover']);
 
-    echo "Validation Successful";
+    //echo "Validation Successful";
     // =========================================================================
     // STEP 9: File Uploads
     // See: /examples/04-php-forms/step-09-file-uploads/
@@ -107,31 +99,32 @@ try {
     // TODO: Extract file from $_FILES
     // Hint: Add to $data extraction:
     // 'cover' => $_FILES['cover'] ?? null
-    //
     // TODO: Add validation for the cover:
     // Hint: Add to $rules
     // 'cover' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:2097152'  // 2MB = 2 * 1024 * 1024
-    //
     // TODO: Process file upload
     // If there is an upload error, add to an error to the $errors array and 
     // throw an exception
     // Hint: Use the ImageUpload class to handle the upload
-
 
     // =========================================================================
     // STEP 10: Complete Handler
     // See: /examples/04-php-forms/step-10-complete/
     // =========================================================================
     // TODO: Clear form data on success (before redirect)
-
-
+    clearFormData();
+    clearFormErrors();
     // =========================================================================
     // STEP 8: Flash Messages
     // See: /examples/04-php-forms/step-08-flash-messages/
     // =========================================================================
     // TODO: On successful registration, set a success flash message and 
     // redirect back to the form
+        SetFlashMessage('success', 'Form validated successfully');
+
+    redirect("success.php");
     }
+    
 catch (Exception $e) {
     // =========================================================================
     // STEP 5: Store Errors and Redirect
@@ -140,19 +133,17 @@ catch (Exception $e) {
     // TODO: In the catch block, store validation errors in the session
     // TODO: Redirect back to the form
     setFormErrors($errors);
-
     // =========================================================================
     // STEP 6: Store Form Data for Repopulation
     // See: /examples/04-php-forms/step-06-repopulate-fields/
     // =========================================================================
     // TODO: Before redirecting on error, also store the form data
     setFormData($data);
-
     // =========================================================================
     // STEP 8: Flash Messages
     // See: /examples/04-php-forms/step-08-flash-messages/
     // =========================================================================
     // TODO: On validation error, you set an error flash message
-
+    SetFlashMessage('error', 'Form validation failed');
     redirect('book_create.php');   
 }

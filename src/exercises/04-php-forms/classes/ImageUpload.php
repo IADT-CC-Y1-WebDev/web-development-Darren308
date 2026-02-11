@@ -1,5 +1,4 @@
 <?php
-
 class ImageUpload {
     private $targetDir;
 

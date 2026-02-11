@@ -7,16 +7,13 @@
 
 // TODO Exercise 1: Start the session
 
-
 // TODO Exercise 2: Redirect to step 1 if quiz not started
-
 
 // TODO Exercise 3: Handle answer submission
 // When $_GET['answer'] is set:
 // 1. Store the answer in $_SESSION['food_quiz']['answers']['spice_level']
 // 2. Also set $_SESSION['food_quiz']['completed_at'] to the current timestamp
 // 3. Redirect to results.php
-
 
 // Get current answer if going back (this is provided)
 $currentAnswer = isset($_SESSION['food_quiz']['answers']['spice_level'])
@@ -146,6 +143,5 @@ $step2Completed = isset($_SESSION['food_quiz']['answers']['meal_type']);
         }
         ?></pre>
     </div>
-
 </body>
 </html>

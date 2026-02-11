@@ -1,6 +1,5 @@
 <?php
 require_once './etc/config.php';
-
 // =============================================================================
 // EXERCISE: Shopping Cart - Cart Page
 // =============================================================================
@@ -204,7 +203,6 @@ $cartCount = isset($cart) ? $cart->getCount() : 0;
         <p class="cart-total">
             <strong>Total: &euro;<?= number_format($cartTotal, 2) ?></strong>
         </p>
-
         <p>
             <a href="checkout.php">Proceed to Checkout</a> |
             <a href="?clear=1">Clear Cart</a>
@@ -220,6 +218,5 @@ $cartCount = isset($cart) ? $cart->getCount() : 0;
             <li>Add +/- links in the quantity column of the table</li>
         </ol>
     </p>
-
 </body>
 </html>

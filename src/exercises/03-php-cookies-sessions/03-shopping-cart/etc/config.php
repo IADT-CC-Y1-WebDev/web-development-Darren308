@@ -1,5 +1,4 @@
 <?php
-
 spl_autoload_register(function ($class) {
     // Convert namespace separators to directory separators
     // Account\BankAccount becomes Account/BankAccount

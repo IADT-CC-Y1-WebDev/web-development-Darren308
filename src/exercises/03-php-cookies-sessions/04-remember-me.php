@@ -217,6 +217,5 @@ $rememberedUser = isset($_COOKIE['remembered_user']) ? $_COOKIE['remembered_user
         // 3. Why use both together?
         ?>
     </div>
-
 </body>
 </html>

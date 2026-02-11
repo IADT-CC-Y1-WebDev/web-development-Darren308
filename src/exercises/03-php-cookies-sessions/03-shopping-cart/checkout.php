@@ -1,6 +1,5 @@
 <?php
 require_once './etc/config.php';
-
 // =============================================================================
 // EXERCISE: Shopping Cart - Checkout Page
 // =============================================================================
@@ -25,7 +24,6 @@ $cart = ShoppingCart::getInstance();
 
 // Variable to track if order is complete
 $orderCompleted = false;
-
 // =============================================================================
 // Exercise 3: Handle "Complete Order" action
 // When $_GET['complete'] is set AND the cart is not empty:
@@ -38,7 +36,6 @@ if (isset($_GET['complete']) and !$cart ->isEmpty()) {
     $cart->clear();
 }
 // =============================================================================
-
 // Calculate totals
 $cartTotal = isset($cart) ? $cart->getTotal() : 0;
 $cartCount = isset($cart) ? $cart->getCount() : 0;
@@ -167,6 +164,5 @@ $cartCount = isset($cart) ? $cart->getCount() : 0;
         </p>
         <p><a href="cart.php">&larr; Back to Cart</a></p>
     <?php endif; ?>
-
 </body>
 </html>

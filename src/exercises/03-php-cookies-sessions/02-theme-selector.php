@@ -57,7 +57,6 @@ if (isset($_GET['session_theme'])) {
 }
 // =============================================================================
 
-
 // =============================================================================
 // Exercise 4: Handle reset actions
 // For $_GET['reset_cookie']: delete the theme cookie
@@ -252,6 +251,5 @@ $themes = [
         <strong>Hint:</strong> In the <code>&lt;body&gt;</code> tag, add a style attribute:
         <code>&lt;body style="background: ...; color: ...;"&gt;</code>
     </p>
-
 </body>
 </html>

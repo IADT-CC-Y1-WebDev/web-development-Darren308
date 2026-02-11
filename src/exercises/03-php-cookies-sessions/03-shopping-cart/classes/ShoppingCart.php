@@ -5,13 +5,10 @@
  * The cart instance itself is stored in the session.
  */
 class ShoppingCart {
-
     // The session key used to store the cart instance
     private const SESSION_KEY = 'cart';
-
     // Private array of ShoppingCartItem objects
     private $items = [];
-
     /**
      * Get the cart instance from the session.
      * Creates a new cart if one doesn't exist.
@@ -22,14 +19,12 @@ class ShoppingCart {
         }
         return $_SESSION[self::SESSION_KEY];
     }
-
     /**
      * Get all items in the cart.
      */
     public function getItems() {
         return $this->items;
     }
-
     /**
      * Add a product to the cart.
      * If the product is already in the cart, increase its quantity.
@@ -44,7 +39,6 @@ class ShoppingCart {
                 new ShoppingCartItem($product->id, $product->name, $product->price, 1);
         }
     }
-
     /**
      * Remove an item from the cart by product ID.
      */
@@ -53,7 +47,6 @@ class ShoppingCart {
             unset($this->items[$productId]);
         }
     }
-
     /**
      * Update the quantity of an item.
      * If quantity is 0 or less, the item is removed.
@@ -67,21 +60,18 @@ class ShoppingCart {
             }
         }
     }
-
     /**
      * Clear all items from the cart.
      */
     public function clear() {
         $this->items = [];
     }
-
     /**
      * Check if the cart is empty.
      */
     public function isEmpty() {
         return empty($this->items);
     }
-
     /**
      * Get the total number of items in the cart.
      */
@@ -92,7 +82,6 @@ class ShoppingCart {
         }
         return $count;
     }
-
     /**
      * Get the total price of all items in the cart.
      */

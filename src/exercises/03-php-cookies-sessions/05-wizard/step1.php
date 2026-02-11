@@ -7,19 +7,16 @@
 
 // TODO Exercise 1: Start the session
 
-
 // TODO Exercise 2: Initialize wizard data
 // If $_SESSION['food_quiz'] doesn't exist OR $_GET['restart'] is set:
 // Create $_SESSION['food_quiz'] with:
 // - 'answers' => [] (empty array)
 // - 'started_at' => date('Y-m-d H:i:s')
 
-
 // TODO Exercise 3: Handle answer submission
 // When $_GET['answer'] is set:
 // 1. Store the answer in $_SESSION['food_quiz']['answers']['cuisine']
 // 2. Redirect to step2.php
-
 
 // Get current answer if going back (this is provided)
 $currentAnswer = isset($_SESSION['food_quiz']['answers']['cuisine'])
@@ -145,6 +142,5 @@ $currentAnswer = isset($_SESSION['food_quiz']['answers']['cuisine'])
         }
         ?></pre>
     </div>
-
 </body>
 </html>

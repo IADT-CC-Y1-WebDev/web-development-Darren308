@@ -125,6 +125,5 @@
         // require_once __DIR__ . '/classes/Student.php';
         ?>
     </div>
-
 </body>
 </html>

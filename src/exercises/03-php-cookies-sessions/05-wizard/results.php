@@ -7,11 +7,9 @@
 
 // TODO Exercise 1: Start the session
 
-
 // TODO Exercise 2: Redirect to step 1 if quiz not started or not complete
 // Check if $_SESSION['food_quiz'] exists AND 'completed_at' is set
 // If not, redirect to step1.php
-
 
 // Get quiz data (this is provided, but depends on your session being set up correctly)
 $answers = isset($_SESSION['food_quiz']['answers']) ? $_SESSION['food_quiz']['answers'] : [];
@@ -143,6 +141,5 @@ $recommendation = isset($recommendations[$cuisine]) ? $recommendations[$cuisine]
         For example, if someone likes Asian food and extra hot spice, recommend
         "Spicy Szechuan Noodles" instead of regular "Pad Thai".
     </p>
-
 </body>
 </html>

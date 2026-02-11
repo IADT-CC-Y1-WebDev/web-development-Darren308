@@ -1,5 +1,4 @@
 <?php
-
 class Product {
     private static $products = [];
     private static $nextId = 1;

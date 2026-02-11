@@ -8,14 +8,12 @@ class Product {
 
     // Registry: static array to store all products
     private static $products = [];
-
     /**
      * Get all registered products.
      */
     public static function findAll() {
         return self::$products;
     }
-
     /**
      * Find a product by its ID.
      */
@@ -25,13 +23,11 @@ class Product {
         }
         return null;
     }
-
     // Public properties (no getters/setters needed)
     public $id;
     public $name;
     public $price;
     public $description;
-
     /**
      * Create a new product and register it.
      */
@@ -40,7 +36,6 @@ class Product {
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;
-
         // Register this product in the static array
         self::$products[$id] = $this;
     }

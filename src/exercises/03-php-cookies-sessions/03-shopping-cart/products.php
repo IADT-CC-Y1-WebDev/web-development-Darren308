@@ -1,6 +1,5 @@
 <?php
 require_once 'etc/config.php';
-
 // =============================================================================
 // EXERCISE: Shopping Cart - Products Page
 // =============================================================================
@@ -156,6 +155,5 @@ $cartCount = isset($cart) ? $cart->getCount() : 0;
         }
         ?></pre>
     </div>
-
 </body>
 </html>

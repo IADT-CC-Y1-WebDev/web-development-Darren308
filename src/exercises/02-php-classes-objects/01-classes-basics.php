@@ -57,7 +57,6 @@
         $student2 = new Student("John Doe:"," N11366419");
         echo "<p>First student: </p>" . $student->name . $student->number;
         echo "<p>Second student: </p>" . $student2->name . $student2->number;
-
         ?>
     </div>
 

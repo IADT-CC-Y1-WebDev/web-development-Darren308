@@ -1,17 +1,14 @@
 <?php
-
 /**
  * Represents an item in the shopping cart.
  * Stores the product ID, name, price, and quantity.
  */
 class ShoppingCartItem {
-
     // Public properties
     public $productId;
     public $name;
     public $price;
     public $quantity;
-
     /**
      * Create a new cart item.
      */
@@ -21,7 +18,6 @@ class ShoppingCartItem {
         $this->price = $price;
         $this->quantity = $quantity;
     }
-
     /**
      * Calculate the subtotal for this item.
      */
