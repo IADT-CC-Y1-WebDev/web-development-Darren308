@@ -64,7 +64,7 @@
             if (!str_contains($email, '@')) {
                 throw new Exception("Invalid email: missing @ symbol");
             }
-            return $email
+            return $email;
         }
         ?>
     </div>

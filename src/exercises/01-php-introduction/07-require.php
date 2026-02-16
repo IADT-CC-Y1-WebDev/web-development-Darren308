@@ -32,7 +32,11 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        require_once('./classes/lib/utilities');
+        require_once('./lib/utilities.php');
+        $text = "This is sample text";
+        $amount = "2005";
+        
+
         ?>
     </div>
 

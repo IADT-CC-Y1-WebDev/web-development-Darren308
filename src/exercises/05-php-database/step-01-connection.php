@@ -40,6 +40,19 @@ require_once __DIR__ . '/lib/config.php';
             // 1. Create a PDO connection
             // 2. Display success message
             // 3. Handle errors with try/catch
+            $host = 'mysql-container';
+            $dbname = 'testdb';
+            $username = 'testuser';
+            $password = 'mysecret';
+
+            $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+
+            try {
+                $db = new PDO($dsn, $username, $password);
+                echo "Connected successfully!";
+            } catch (PDOException $e) {
+                echo "Connection failed: " . $e->getMessage();
+            }
             ?>
         </div>
     </div>
