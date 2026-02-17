@@ -14,7 +14,7 @@ require_once __DIR__ . '/lib/config.php';
             <a href="/examples/05-php-database/step-01-connection.php">View Example &rarr;</a>
         </div>
 
-        <h1>Exercise 1: PDO Connection</h1>
+        <h1>Exercise 1: PDO Connection ✓</h1>
 
         <h2>Task</h2>
         <p>Create a PDO connection to the database and display the connection status.</p>

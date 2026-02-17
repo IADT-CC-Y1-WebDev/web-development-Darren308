@@ -56,6 +56,24 @@ catch (PDOException $e) {
             // 3. Check rowCount() === 1
             // 4. Get lastInsertId()
             // 5. Display success message with the new ID
+           try {
+            $stmt = $db->prepare("INSERT INTO books (title, author, publisher_id, year, description)
+            VALUES (:title, :author, :publisher_id, :year, :description)
+            ");
+
+            $stmt->execute([
+                'title' => 'My Favourite Book',
+                'author' => 'Darren Carroll',
+                'publisher_id' => 1,
+                'year' => 2024,
+                'description' => 'A book I created for learning PDO'
+            ]);
+
+            echo 'Inserted successfully!';
+        } catch(PDOException $e) {
+            echo 'Insert failed: ' . $e->getMessage();
+        }
+
             ?>
         </div>
     </div>

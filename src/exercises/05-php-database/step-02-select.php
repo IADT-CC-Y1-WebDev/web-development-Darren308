@@ -25,7 +25,7 @@ catch (PDOException $e) {
             <a href="/examples/05-php-database/step-02-select.php">View Example &rarr;</a>
         </div>
 
-        <h1>Exercise 2: SELECT Queries</h1>
+        <h1>Exercise 2: SELECT Queries ✓</h1>
 
         <h2>Task</h2>
         <p>Fetch all books from the database and display them in an HTML table.</p>
