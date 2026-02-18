@@ -215,6 +215,9 @@ $rememberedUser = isset($_COOKIE['remembered_user']) ? $_COOKIE['remembered_user
         // 1. What is the session used for?
         // 2. What is the cookie used for?
         // 3. Why use both together?
+        echo "1. A session is the data of the period of time of the most recent instance of the user on the web." . "<br/>";
+        echo "2. A cookie is remembered data from recent sessions and is kept on the device." . "<br/>";
+        echo "3. Cookies store data on the client-side, while sessions store data on the server-side.";
         ?>
     </div>
 </body>

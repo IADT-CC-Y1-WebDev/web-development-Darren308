@@ -43,8 +43,20 @@ class Book
     // =========================================================================
     public function __construct($data = [])
     {
+        $this->db = DB::getInstance()->getConnection();
         // TODO: Get database connection from DB singleton
         // TODO: If $data is not empty, populate properties using null coalescing operator
+        if (!empty($data)) {
+            $this->id = $data['id']??null;
+            $this->title = $data['title']??null;
+            $this->author = $data['author']??null;
+            $this->publisher_id = $data['publisher_id']??null;
+            $this->year = $data['year']??null;
+            $this->isbn = $data['isbn']??null;
+            $this->description = $data['description']??null;
+            $this->cover_filename = $data['cover_filename']??null;
+
+        }
     }
 
     // =========================================================================

@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/08-exceptions.php">View Example &rarr;</a>
     </div>
 
-    <h1>Exceptions Exercises</h1>
+    <h1>Exceptions Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Basic Exception Handling</h2>
@@ -30,7 +30,7 @@
         $number = rand(-20,20);
         function calculatesquareRoot($number){
             if ($number<0){
-                throw new Exception("Number is invalid");
+                throw new Exception(" $number : Number is invalid");
             }
             return $number;
         }
@@ -59,13 +59,9 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        $email = "user@example.com";
-        function validateEmail($email){
-            if (!str_contains($email, '@')) {
-                throw new Exception("Invalid email: missing @ symbol");
-            }
-            return $email;
-        }
+        require_once('./lib/validators.php');
+        $email = isValidEmail('test@gmail.com') . '<br/>';
+        echo $email;
         ?>
     </div>
 
