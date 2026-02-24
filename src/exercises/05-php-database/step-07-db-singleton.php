@@ -14,7 +14,7 @@ require_once __DIR__ . '/lib/config.php';
             <a href="/examples/05-php-database/step-07-db-singleton.php">View Example &rarr;</a>
         </div>
 
-        <h1>Exercise 7: Database Singleton Class</h1>
+        <h1>Exercise 7: Database Singleton Class ✓</h1>
 
         <h2>Task</h2>
         <p>Use the DB singleton class to get database connections.</p>

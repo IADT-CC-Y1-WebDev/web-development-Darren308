@@ -25,7 +25,7 @@ catch (PDOException $e) {
             <a href="/examples/05-php-database/step-06-delete.php">View Example &rarr;</a>
         </div>
 
-        <h1>Exercise 6: DELETE Operations</h1>
+        <h1>Exercise 6: DELETE Operations ✓</h1>
 
         <h2>Task</h2>
         <p>Create a temporary book and then delete it.</p>

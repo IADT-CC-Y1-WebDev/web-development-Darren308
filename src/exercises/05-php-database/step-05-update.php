@@ -25,7 +25,7 @@ catch (PDOException $e) {
             <a href="/examples/05-php-database/step-05-update.php">View Example &rarr;</a>
         </div>
 
-        <h1>Exercise 5: UPDATE Operations</h1>
+        <h1>Exercise 5: UPDATE Operations ✓</h1>
 
         <h2>Task</h2>
         <p>Update an existing book's description.</p>

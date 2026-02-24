@@ -12,7 +12,7 @@
         <a href="/examples/02-php-classes-objects/01-classes-basics.php">View Example &rarr;</a>
     </div>
 
-    <h1>Classes Basics Exercises</h1>
+    <h1>Classes Basics Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Create a Student Class File</h2>
@@ -76,6 +76,7 @@
     <div class="output">
         <?php
         require_once __DIR__ . '/classes/Student.php';
+        echo "Student $student->name has number $student->number";
         ?>
     </div>
 </body>

@@ -12,7 +12,7 @@
         <a href="/examples/01-php-introduction/07-require.php">View Example &rarr;</a>
     </div>
 
-    <h1>Libraries Exercises</h1>
+    <h1>Libraries Exercises ✓</h1>
 
     <!-- Exercise 1 -->
     <h2>Exercise 1: Create a Navigation Include</h2>
@@ -33,10 +33,14 @@
     <div class="output">
         <?php
         require_once('./lib/utilities.php');
-        $text = "This is sample text";
-        $amount = "2005";
-        
+        $text = truncate("This is sample text") . '<br/>';
+        echo $text;
 
+        $amount = formatPrice(2005). '<br/>';
+        echo $amount;
+
+        $year = getCurrentYear();
+        echo $year;
         ?>
     </div>
 
@@ -48,6 +52,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        require_once('./lib/formatters.php');
+        $number = formatPhoneNumber('0123456789');
+        echo $number;
+
+        require_once('./lib/validators.php');
+        $email = isValidEmail('test@gmail.com') . '<br/>';
+        echo $email;
         ?>
     </div>
 </body>
