@@ -28,6 +28,7 @@ catch (PDOException $e) {
     // echo 'Error: ' . $e->getMessage();
     // exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

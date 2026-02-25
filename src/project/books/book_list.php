@@ -1,5 +1,7 @@
 <?php
-require_once './php/lib/config.php';
+require_once 'php/lib/config.php';
+require_once 'php/lib/utils.php';
+require_once 'php/lib/session.php';
 
 try {
     $books = Book::findAll();
@@ -7,6 +9,18 @@ try {
 catch (PDOException $e) {
     die("<p>PDO Exception: " . $e->getMessage() . "</p>");
 }
+
+public function findAll() {
+        $db = DB::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT * FROM books ORDER BY title");
+        $stmt->execute();
+
+        $books = [];
+        while ($row = $stmt->fetch()) {
+            $books[] = new Book($row);
+        }
+        return $books;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +75,9 @@ catch (PDOException $e) {
                                     <a href="book_view.php?id=<?= h($book->id) ?>">View</a>/ 
                                     <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>/ 
                                     <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a>
+                                    <a href="book_create.php?id=<?= h($book->id) ?>">Create</a>
+                                    <a href="index.php">Back</a>
+                                </div>
                                 </div>
                             </div>
                         </div>

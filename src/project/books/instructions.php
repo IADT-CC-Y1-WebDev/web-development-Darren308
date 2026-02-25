@@ -199,29 +199,29 @@
         <h4>Step 2: Book Class</h4>
         <p>Create the Book Active Record class.</p>
         <ul class="checklist">
-            <li>Create <code>php/classes/Book.php</code></li>
-            <li>Implement <code>findAll()</code> method to retrieve all books</li>
-            <li>Implement <code>findById($id)</code> method to retrieve a single book</li>
-            <li>Implement <code>save()</code> method to insert a new book</li>
-            <li>Implement <code>update()</code> method to update an existing book</li>
-            <li>Implement <code>delete()</code> method to delete a book</li>
+            <li>✓ Create <code>php/classes/Book.php</code></li>
+            <li>✓ Implement <code>findAll()</code> method to retrieve all books</li>
+            <li>✓ Implement <code>findById($id)</code> method to retrieve a single book</li>
+            <li>✓ Implement <code>save()</code> method to insert a new book</li>
+            <li>✓ Implement <code>update()</code> method to update an existing book</li>
+            <li>✓ Implement <code>delete()</code> method to delete a book</li>
         </ul>
 
         <h4>Step 3: List Page</h4>
         <p>Create the page that displays all books.</p>
         <ul class="checklist">
-            <li>Create <code>book_list.php</code></li>
+            <li>✓ Create <code>book_list.php</code></li>
             <li>Include the database connection and Book class</li>
-            <li>Retrieve all books using <code>Book::findAll()</code></li>
-            <li>Display books in an HTML table or card layout</li>
-            <li>Add links to view, edit, and delete each book</li>
-            <li>Add a link to create a new book</li>
+            <li>✓ Retrieve all books using <code>Book::findAll()</code></li>
+            <li>✓ Display books in an HTML table or card layout</li>
+            <li>✓ Add links to view, edit, and delete each book</li>
+            <li>✓ Add a link to create a new book</li>
         </ul>
 
         <h4>Step 4: View Page</h4>
         <p>Create the page that displays a single book.</p>
         <ul class="checklist">
-            <li>Create <code>book_view.php</code></li>
+            <li>✓ Create <code>book_view.php</code></li>
             <li>Get the book ID from the query string (<code>$_GET['id']</code>)</li>
             <li>Retrieve the book using <code>Book::findById($id)</code></li>
             <li>Display the book details</li>
