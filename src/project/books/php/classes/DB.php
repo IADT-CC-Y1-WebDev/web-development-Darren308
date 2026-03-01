@@ -2,9 +2,7 @@
 
 class DB {
     private static $instance = null;
-
     private $connection;
-
     private $host = 'mysql-container';
     private $dbname = 'testdb';
     private $username = 'testuser';

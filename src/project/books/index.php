@@ -2,8 +2,18 @@
 require_once 'php/lib/config.php';
 require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
-?>
 
+try {
+    $books = Book::findAll();
+    $formats = Format::findAll();
+    $authors = Author::findAll();
+} 
+
+catch (PDOException $e) {
+    die("<p>PDO Exception: " . $e->getMessage() . "</p>");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,4 +31,4 @@ require_once 'php/lib/session.php';
         </div>
     </body>
 </html>
-                        
+      

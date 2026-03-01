@@ -2,3 +2,63 @@
 require_once 'php/lib/config.php';
 require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
+
+startSession();
+
+try {
+    $data = [];
+    $errors = [];
+    
+    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+        throw new Exception('Invalid request method.');
+    }
+
+    $data = [
+        'id' => $_GET['id'] ?? null
+    ];
+
+    $rules = [
+        'id' => 'required|integer'
+    ];
+
+    $validator = new Validator($data, $rules);
+
+    if ($validator->fails()) {
+        foreach ($validator->errors() as $field => $fieldErrors) {
+            $errors[$field] = $fieldErrors[0];
+        }
+
+        throw new Exception('Validation failed.');
+    }
+
+    $book = Book::findById($data['id']);
+    if (!$book) {
+        throw new Exception('Book not found.');
+    }
+
+    if ($book->cover_filename) {
+        $uploader = new ImageUpload();
+        $uploader->deleteImage($book->cover_filename);
+    }
+    $book->delete();
+
+    clearFormData();
+    clearFormErrors();
+
+    setFlashMessage('success', 'Book deleted successfully.');
+
+    redirect('index.php');
+}
+catch (Exception $e) {
+    setFlashMessage('error', 'Error: ' . $e->getMessage());
+
+    setFormData($data);
+    setFormErrors($errors);
+
+    if (isset($data['id']) && $data['id']) {
+        redirect('book_view.php?id=' . $data['id']);
+    }
+    else {
+        redirect('index.php');
+    }
+}

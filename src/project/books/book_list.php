@@ -4,13 +4,13 @@ require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
 
 try {
-    $books = Book::findAll();
+    // $book = Book::findById($id);
     } 
 catch (PDOException $e) {
     die("<p>PDO Exception: " . $e->getMessage() . "</p>");
 }
 
-public function findAll() {
+function findAll() {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("SELECT * FROM books ORDER BY title");
         $stmt->execute();
