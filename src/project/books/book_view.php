@@ -23,10 +23,10 @@ try {
     }
 } 
 catch (PDOException $e) {
-    // setFlashMessage('error', 'Error: ' . $e->getMessage());
-    // redirect('book_list.php');
-    // echo 'Error: ' . $e->getMessage();
-    // exit();
+    setFlashMessage('error', 'Error: ' . $e->getMessage());
+    redirect('book_list.php');
+    echo 'Error: ' . $e->getMessage();
+    exit();
 }
 
 ?>
