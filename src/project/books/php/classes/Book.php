@@ -2,7 +2,6 @@
 class Book {
     public $id;
     public $title;
-    public $author;
     public $publisher_id;
     public $year;
     public $isbn;
@@ -16,7 +15,6 @@ class Book {
         if (!empty($data)) {
             $this->id = $data['id'] ?? null;
             $this->title = $data['title'] ?? null;
-            $this->author = $data['author'] ?? null;
             $this->publisher_id = $data['publisher_id'] ?? null;
             $this->year = $data['year'] ?? null;
             $this->isbn = $data['isbn'] ?? null;
@@ -25,7 +23,7 @@ class Book {
         }
     }
 
-    public function findAll() {
+    public static function findAll() {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("SELECT * FROM books ORDER BY title");
         $stmt->execute();
@@ -37,7 +35,7 @@ class Book {
         return $books;
     }
 
-    public function findById($id) {
+    public static function findById($id) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("SELECT * FROM books WHERE id = :id");
         $stmt->execute(['id' => $id]);
@@ -53,7 +51,6 @@ class Book {
         if ($this->id) {
             $stmt = $this->db->prepare("UPDATE books
                 SET title = :title,
-                author = :author,
                 publisher_id = :publisher_id,
                 year = :year,
                 isbn = :isbn,
@@ -65,22 +62,21 @@ class Book {
             $params = [
                 'id' => $this->id,
                 'title' => $this->title,
-                'author' => $this->author,
                 'publisher_id' => $this->publisher_id,
                 'year' => $this->year,
                 'isbn' => $this->isbn,
                 'description' => $this->description,
                 'cover_filename' => $this->cover_filename,
             ];
+
         } else {
-            $stmt = $this->db->prepare("INSERT INTO books (title, author, publisher_id, year, isbn, description, cover_filename)
-                VALUES (:title, :author, :publisher_id, :year, :isbn, :description, :cover_filename)
+            $stmt = $this->db->prepare("INSERT INTO books (title, publisher_id, year, isbn, description, cover_filename)
+                VALUES (:title, :publisher_id, :year, :isbn, :description, :cover_filename)
             ");
 
             $params = [
                 'id' => $this->id,
                 'title' => $this->title,
-                'author' => $this->author,
                 'publisher_id' => $this->publisher_id,
                 'year' => $this->year,
                 'isbn' => $this->isbn,
@@ -98,15 +94,14 @@ class Book {
                 $error_info[0],
                 $error_info[2]
             );
+
             throw new Exception($message);
         }
 
-        // Ensure one row affected
         if ($stmt->rowCount() !== 1) {
             throw new Exception("Failed to save book.");
         }
 
-        // Set ID for new records
         if ($this->id === null) {
             $this->id = $this->db->lastInsertId();
         }
@@ -127,7 +122,6 @@ class Book {
             SET description = :description
             WHERE id = :id
             ");
-
 
             $stmt->execute([
                 'description' => 'Updated description text.' . time(),

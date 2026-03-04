@@ -16,7 +16,6 @@ try {
     $data = [
         'id' => $this->id,
         'title' => $this->title,
-        'author' => $this->author,
         'publisher_id' => $this->publisher_id,
         'year' => $this->year,
         'isbn' => $this->isbn,

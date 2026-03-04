@@ -1,13 +1,13 @@
 <?php
 require_once 'php/lib/config.php';
-require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
+require_once 'php/lib/forms.php';
+require_once 'php/lib/utils.php';
 
 startSession();
 
 try {
-    $genres = Genre::findAll();
-    $platforms = Platform::findAll();
+    $formats = Format::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -38,23 +38,23 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="year">Release Year:</label>
+                        <label class="special" for="year">Year:</label>
                         <div>
                             <input type="date" id="year" name="year" value="<?= old('year') ?>" required>
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="author_id">Genre:</label>
+                        <label class="special" for="publisher_id">publisher:</label>
                         <div>
-                            <select id="author_id" name="author_id" required>
-                                <?php foreach ($authors as $author) { ?>
-                                    <option value="<?= h($author->id) ?>" <?= chosen('author_id', $author->id) ? "selected" : "" ?>>
-                                        <?= h($author->name) ?>
+                            <select id="publisher_id" name="publisher_id" required>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id) ? "selected" : "" ?>>
+                                        <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('author_id') ?></p>
+                            <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
                     <div class="input">
@@ -98,8 +98,6 @@ catch (PDOException $e) {
     </body>
 </html>
 <?php
-// Clear form data after displaying
 clearFormData();
-// Clear errors after displaying
 clearFormErrors();
 ?>

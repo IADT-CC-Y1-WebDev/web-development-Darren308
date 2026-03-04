@@ -1,7 +1,8 @@
 <?php
 require_once 'php/lib/config.php';
-require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
+require_once 'php/lib/forms.php';
+require_once 'php/lib/utils.php';
 
 startSession();
 
@@ -16,7 +17,6 @@ try {
     $data = [
         'id' => $this->id,
         'title' => $this->title,
-        'author' => $this->author,
         'publisher_id' => $this->publisher_id,
         'year' => $this->year,
         'isbn' => $this->isbn,

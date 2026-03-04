@@ -1,12 +1,11 @@
 <?php
 require_once 'php/lib/config.php';
 require_once 'php/lib/utils.php';
-require_once 'php/lib/session.php';
+
 
 try {
     $books = Book::findAll();
     $formats = Format::findAll();
-    $authors = Author::findAll();
 } 
 
 catch (PDOException $e) {

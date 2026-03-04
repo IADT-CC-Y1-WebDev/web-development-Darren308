@@ -1,10 +1,12 @@
 <?php
 require_once 'php/lib/config.php';
-require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
+require_once 'php/lib/forms.php';
+require_once 'php/lib/utils.php';
 
 try {
-    // $book = Book::findById($id);
+    $books = Book::findAll();
+    
     } 
 catch (PDOException $e) {
     die("<p>PDO Exception: " . $e->getMessage() . "</p>");
@@ -44,9 +46,9 @@ function findAll() {
                             <input type="text" id="title_filter" name="title_filter">
                         </div>
                         <div>
-                            <label for="author_filter">Author:</label>
-                            <select id="author_filter" name="author_filter">
-                                <option value="">All Authors</option>
+                            <label for="publisher_filter">publisher:</label>
+                            <select id="publisher_filter" name="publisher_filter">
+                                <option value="">All publishers</option>
                                     <?php foreach ($books as $book) { ?>
                                         <option value="<?= h($book->id) ?>"><?= h($book->name) ?>
                                 </option>

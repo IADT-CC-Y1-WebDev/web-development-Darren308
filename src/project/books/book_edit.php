@@ -2,6 +2,7 @@
 require_once 'php/lib/config.php';
 require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
+require_once 'php/lib/forms.php';
 
 startSession();
 
@@ -25,7 +26,7 @@ try {
         $bookFormatsIds[] = $format->id;
     }
 
-    $authors = Author::findAll();
+    $publishers = Publisher::findAll();
     $formats = Format::findAll();
 }
 catch (PDOException $e) {
@@ -62,27 +63,28 @@ catch (PDOException $e) {
                     <div class="input">
                         <label class="special" for="year">Year:</label>
                         <div>
-                            <input type="date" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
+                            
+                            <input type="year" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="author">Author:</label>
+                        <label class="special" for="publisher">Publisher:</label>
                         <div>
-                            <select id="author" name="author_id" required>
-                                <?php foreach ($authors as $author) { ?>
-                                    <option value="<?= h($author->id) ?>" <?= chosen('author_id', $author->id, $book->author_id) ? "selected" : "" ?>>
-                                        <?= h($author->name) ?>
+                            <select id="publisher" name="publisher_id" required>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id, $book->publisher_id) ? "selected" : "" ?>>
+                                        <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('author_id') ?></p>
+                            <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
-                            <textarea id="description" name="description" required><?= old('description', $game->description) ?></textarea>
+                            <textarea id="description" name="description" required><?= old('description', $book->description) ?></textarea>
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
@@ -103,7 +105,7 @@ catch (PDOException $e) {
                         </div>
                         <p><?= error('format_ids') ?></p>
                     </div>
-                    <div><img src="images/<?= $book->image_filename ?>" /></div>
+                    <div><img src="images/<?= $book->cover_filename ?>" /></div>
                     <div class="input">
                         <label class="special" for="image">Image (optional):</label>
                         <div>

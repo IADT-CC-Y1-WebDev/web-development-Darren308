@@ -1,5 +1,4 @@
 <?php
-
 class DB {
     private static $instance = null;
     private $connection;
@@ -36,5 +35,4 @@ class DB {
     public function getConnection() {
         return $this->connection;
     }
-    
 }

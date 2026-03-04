@@ -1,7 +1,8 @@
 <?php
 require_once 'php/lib/config.php';
-require_once 'php/lib/utils.php';
 require_once 'php/lib/session.php';
+require_once 'php/lib/forms.php';
+require_once 'php/lib/utils.php';
 
 startSession();
 
