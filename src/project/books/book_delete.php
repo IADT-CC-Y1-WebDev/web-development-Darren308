@@ -1,65 +1,68 @@
 <?php
-require_once 'php/lib/config.php';
-require_once 'php/lib/session.php';
-require_once 'php/lib/forms.php';
-require_once 'php/lib/utils.php';
 
-startSession();
+    require_once 'php/lib/config.php';
+    require_once 'php/lib/session.php';
+    require_once 'php/lib/forms.php';
+    require_once 'php/lib/utils.php';
 
-try {
-    $data = [];
-    $errors = [];
-    
-    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-        throw new Exception('Invalid request method.');
-    }
+    startSession();
 
-    $data = [
-        'id' => $_GET['id'] ?? null
-    ];
-
-    $rules = [
-        'id' => 'required|integer'
-    ];
-
-    $validator = new Validator($data, $rules);
-
-    if ($validator->fails()) {
-        foreach ($validator->errors() as $field => $fieldErrors) {
-            $errors[$field] = $fieldErrors[0];
+    try {
+        $data = [];
+        $errors = [];
+        
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            throw new Exception('Invalid request method.');
         }
 
-        throw new Exception('Validation failed.');
-    }
+        $data = [
+            'id' => $_GET['id'] ?? null
+        ];
 
-    $book = Book::findById($data['id']);
-    if (!$book) {
-        throw new Exception('Book not found.');
-    }
+        $rules = [
+            'id' => 'required|integer'
+        ];
 
-    if ($book->cover_filename) {
-        $uploader = new ImageUpload();
-        $uploader->deleteImage($book->cover_filename);
-    }
-    $book->delete();
+        $validator = new Validator($data, $rules);
 
-    clearFormData();
-    clearFormErrors();
+        if ($validator->fails()) {
+            foreach ($validator->errors() as $field => $fieldErrors) {
+                $errors[$field] = $fieldErrors[0];
+            }
 
-    setFlashMessage('success', 'Book deleted successfully.');
+            throw new Exception('Validation failed.');
+        }
 
-    redirect('index.php');
-}
-catch (Exception $e) {
-    setFlashMessage('error', 'Error: ' . $e->getMessage());
+        $book = Book::findById($data['id']);
+        if (!$book) {
+            throw new Exception('Book not found.');
+        }
 
-    setFormData($data);
-    setFormErrors($errors);
+        if ($book->cover_filename) {
+            $uploader = new ImageUpload();
+            $uploader->deleteImage($book->cover_filename);
+        }
+        $book->delete();
 
-    if (isset($data['id']) && $data['id']) {
-        redirect('book_view.php?id=' . $data['id']);
-    }
-    else {
+        clearFormData();
+        clearFormErrors();
+
+        setFlashMessage('success', 'Book deleted successfully.');
+
         redirect('index.php');
     }
-}
+
+    catch (Exception $e) {
+        setFlashMessage('error', 'Error: ' . $e->getMessage());
+
+        setFormData($data);
+        setFormErrors($errors);
+
+        if (isset($data['id']) && $data['id']) {
+            redirect('book_view.php?id=' . $data['id']);
+        }
+        else {
+            redirect('index.php');
+        }
+    }
+?>

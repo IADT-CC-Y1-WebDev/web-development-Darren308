@@ -1,16 +1,16 @@
 <?php
-require_once 'php/lib/config.php';
-require_once 'php/lib/utils.php';
 
+    require_once 'php/lib/config.php';
+    require_once 'php/lib/utils.php';
 
-try {
-    $books = Book::findAll();
-    $formats = Format::findAll();
-} 
+    try {
+        $books = Book::findAll();
+        $formats = Format::findAll();
+    } 
 
-catch (PDOException $e) {
-    die("<p>PDO Exception: " . $e->getMessage() . "</p>");
-}
+    catch (PDOException $e) {
+        die("<p>PDO Exception: " . $e->getMessage() . "</p>");
+    }
 
 ?>
 <!DOCTYPE html>
@@ -30,4 +30,3 @@ catch (PDOException $e) {
         </div>
     </body>
 </html>
-      

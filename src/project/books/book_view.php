@@ -1,32 +1,33 @@
 <?php
-require_once 'php/lib/config.php';
-require_once 'php/lib/utils.php';
+    require_once 'php/lib/config.php';
+    require_once 'php/lib/utils.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'GET' || !array_key_exists('id', $_GET)) {
-    die("<p>Error: No book ID provided.</p>");
-}
-$id = $_GET['id'];
-
-try {
-    $book = Book::findById($id);
-    if ($book === null) {
-        die("<p>Error: Book not found.</p>");
+    if ($_SERVER['REQUEST_METHOD'] !== 'GET' || !array_key_exists('id', $_GET)) {
+        die("<p>Error: No book ID provided.</p>");
     }
+    $id = $_GET['id'];
 
-    $publisher = Publisher::findById($book->publisher_id);
-    $formats = Format::findByBook($book->id);
+    try {
+        $book = Book::findById($id);
+        if ($book === null) {
+            die("<p>Error: Book not found.</p>");
+        }
 
-    $formatNames = [];
-    foreach ($formats as $format) {
-        $formatNames[] = htmlspecialchars($format->name);
+        $publisher = Publisher::findById($book->publisher_id);
+        $formats = Format::findByBook($book->id);
+
+        $formatNames = [];
+        foreach ($formats as $format) {
+            $formatNames[] = htmlspecialchars($format->name);
+        }
+    } 
+    
+    catch (PDOException $e) {
+        setFlashMessage('error', 'Error: ' . $e->getMessage());
+        redirect('book_list.php');
+        echo 'Error: ' . $e->getMessage();
+        exit();
     }
-} 
-catch (PDOException $e) {
-    setFlashMessage('error', 'Error: ' . $e->getMessage());
-    redirect('book_list.php');
-    echo 'Error: ' . $e->getMessage();
-    exit();
-}
 
 ?>
 <!DOCTYPE html>
