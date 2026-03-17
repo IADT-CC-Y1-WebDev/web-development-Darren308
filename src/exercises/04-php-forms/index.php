@@ -18,7 +18,7 @@ startSession();
             <a href="/examples/04-php-forms/">View Examples &rarr;</a>
         </div>
 
-        <h1>PHP Form Handling Exercise</h1>
+        <h1>PHP Form Handling Exercise ✓</h1>
 
         <p>In this exercise, you will build a <strong>Create Book Form</strong> by progressively implementing form handling techniques. Follow the steps below, referring to the corresponding examples as you go.</p>
 

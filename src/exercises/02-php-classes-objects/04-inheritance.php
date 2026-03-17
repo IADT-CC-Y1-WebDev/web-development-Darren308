@@ -12,7 +12,7 @@
         <a href="/examples/02-php-classes-objects/04-inheritance.php">View Example &rarr;</a>
     </div>
 
-    <h1>Inheritance Exercises</h1>
+    <h1>Inheritance Exercises ✓</h1>
 
     <p><strong>Note:</strong> These exercises build on your <code>classes/Student.php</code> file. Make sure your Student class has <code>protected</code> properties so child classes can access them.</p>
 
@@ -37,7 +37,9 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+        $undergrad = new Undergrad("Alice", "U12345", "Computer Science", 2);
+        echo "Undergrad Name: " . $undergrad->getName() . "<br>";
         ?>
     </div>
 
@@ -58,7 +60,10 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+        $undergrad = new Undergrad("Bob", "U67890", "Mathematics", 3);
+        echo "Name: " . $undergrad->getName() . "<br>";
+        echo "Number: " . $undergrad->getNumber() . "<br>";
         ?>
     </div>
 
@@ -75,7 +80,16 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+        $undergrad1 = new Undergrad("Alice", "U12345", "Computer Science", 2);
+        $undergrad2 = new Undergrad("Bob", "U67890", "Mathematics", 3);
+        $undergrad3 = new Undergrad("Charlie", "U54321", "Physics", 1);
+        $students = [$undergrad1, $undergrad2, $undergrad3];
+        foreach ($students as $student) {
+            echo "Name: " . $student->getName() . "<br>";
+            echo "Number: " . $student->getNumber() . "<br>";
+            echo "<hr>";
+        }
         ?>
     </div>
 </body>

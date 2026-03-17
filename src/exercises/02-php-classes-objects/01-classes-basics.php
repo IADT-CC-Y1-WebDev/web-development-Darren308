@@ -31,7 +31,7 @@
     <div class="output">
         <?php
         require_once __DIR__ . '/classes/Student.php';
-        $student = new Student("Darren Carroll:" , " N00255308");
+        $student = new Student("Darren Carroll" , " N00255308");
         echo "Student: " . $student->number;
         echo ", Name: " . $student->name;
         ?>

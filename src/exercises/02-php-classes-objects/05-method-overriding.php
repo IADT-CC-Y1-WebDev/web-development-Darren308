@@ -12,7 +12,7 @@
         <a href="/examples/02-php-classes-objects/05-method-overriding.php">View Example &rarr;</a>
     </div>
 
-    <h1>Method Overriding Exercises</h1>
+    <h1>Method Overriding Exercises ✓</h1>
 
     <p><strong>Note:</strong> These exercises build on your <code>classes/Student.php</code> and <code>classes/Undergrad.php</code> files.</p>
 
@@ -32,7 +32,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+        $student = new Student("Alice", "N00255308");
+        $undergrad = new Undergrad("Bob", "U67890", "Computer Science", 2);
+        echo $student . "<br>";
+        echo $undergrad . "<br>";
+
         ?>
     </div>
 
@@ -60,7 +65,10 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Postgrad.php';
+        require_once __DIR__ . '/classes/Postgrad.php';
+        $postgrad = new Postgrad("Charlie", "P12345", "Dr. Smith", "Machine Learning");
+        echo $postgrad . "<br>";
+
         ?>
     </div>
 
@@ -77,8 +85,16 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
-        // require_once __DIR__ . '/classes/Postgrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Postgrad.php';
+        $students = [
+            new Student("Alice", "N00255308"),
+            new Undergrad("Bob", "U67890", "Computer Science", 2),
+            new Postgrad("Charlie", "P12345", "Dr. Smith", "Machine Learning")
+        ];
+        foreach ($students as $student) {
+            echo $student . "<br>";
+        }
         ?>
     </div>
 </body>

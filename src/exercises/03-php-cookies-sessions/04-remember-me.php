@@ -122,7 +122,7 @@ $rememberedUser = isset($_COOKIE['remembered_user']) ? $_COOKIE['remembered_user
         <a href="/examples/03-php-cookies-sessions/04-remember-me.php">View Example &rarr;</a>
     </div>
 
-    <h1>Remember Me Exercise</h1>
+    <h1>Remember Me Exercise ✓</h1>
 
     <!-- Current State Display -->
     <h2>Current State</h2>

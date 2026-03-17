@@ -12,7 +12,7 @@
         <a href="/examples/02-php-classes-objects/02-encapsulation.php">View Example &rarr;</a>
     </div>
 
-    <h1>Encapsulation Exercises</h1>
+    <h1>Encapsulation Exercises ✓</h1>
 
     <p><strong>Note:</strong> These exercises build on your <code>classes/Student.php</code> file from the previous exercises. Modifying the class may affect earlier exercises.</p>
 
@@ -35,7 +35,9 @@
         <?php
         // TODO: Write your solution here
         require_once __DIR__ . '/classes/Student.php';
-        echo "Student $student->name has number $student->number";
+        $student = new Student("Darren Carroll " , " N00255308");
+        echo "Student: " . $student->getNumber();
+        echo ", Name: " . $student->getName();
 
         ?>
     </div>
@@ -58,6 +60,9 @@
         <?php
         // TODO: Write your solution here
         require_once __DIR__ . '/classes/Student.php';
+        $student = new Student("David", "N00255308");
+        echo "Student: " . $student->getNumber();
+        echo ", Name: " . $student->getName();
 
         ?>
     </div>
@@ -79,12 +84,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
-        // try {
-        //     $student = new Student("Alice", "");
-        // } catch (Exception $e) {
-        //     echo "Error: " . $e->getMessage();
-        // }
+        require_once __DIR__ . '/classes/Student.php';
+        try {
+            $student = new Student("Alice", "");
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
         ?>
     </div>
 </body>

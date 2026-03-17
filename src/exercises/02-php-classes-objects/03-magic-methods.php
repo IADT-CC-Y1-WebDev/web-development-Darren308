@@ -12,7 +12,7 @@
         <a href="/examples/02-php-classes-objects/03-magic-methods.php">View Example &rarr;</a>
     </div>
 
-    <h1>Magic Methods Exercises</h1>
+    <h1>Magic Methods Exercises ✓</h1>
 
     <p><strong>Note:</strong> These exercises build on your <code>classes/Student.php</code> file from the previous exercises.</p>
 
@@ -32,7 +32,10 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+        $student1 = new Student("Alice", "N00255308");
+        $student2 = new Student("Bob", "N00255309");
+
         ?>
     </div>
 
@@ -52,7 +55,9 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+        $student = new Student("Charlie", "N00255310");
+        echo $student;
         ?>
     </div>
 
@@ -73,7 +78,16 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+        $students = [
+            new Student("Alice", "N00255308"),
+            new Student("Bob", "N00255309"),
+            new Student("Charlie", "N00255310")
+        ];
+        foreach ($students as $student) {
+            echo $student . "<br>";
+        }
+
         ?>
     </div>
 
@@ -94,12 +108,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
-        // $student1 = new Student("Alice", "S001");
-        // $student2 = new Student("Bob", "S002");
-        // echo "Setting student1 to null...<br>";
-        // $student1 = null;
-        // echo "Script ending...<br>";
+        require_once __DIR__ . '/classes/Student.php';
+        $student1 = new Student("Alice", "S001");
+        $student2 = new Student("Bob", "S002");
+        echo "Setting student1 to null...<br>";
+        $student1 = null;
+        echo "Script ending...<br>";
         ?>
     </div>
 </body>
