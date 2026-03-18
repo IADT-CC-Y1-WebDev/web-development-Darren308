@@ -1,6 +1,6 @@
 // 09-2: Games-style form validation (formHandler pattern)
 
-let submitBtn = document.getElementById('submit_btn');
+let submit = document.getElementById('submit');
 let gameForm = document.getElementById('game_form');
 let errorSummaryTop = document.getElementById('error_summary_top');
 
@@ -20,7 +20,7 @@ let imageError = document.getElementById('image_error');
 
 let errors = {};
 
-submitBtn.addEventListener('click', onSubmitForm);
+submit.addEventListener('click', onSubmitForm);
 
 function addError(fieldName, message) {
     errors[fieldName] = message;

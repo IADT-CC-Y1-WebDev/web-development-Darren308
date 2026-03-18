@@ -90,7 +90,7 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <button  class="button" type="submit">Store Game</button>
+                        <button class="button" type="submit">Store Game</button>
                         <div class="button"><a href="index.php">Cancel</a></div>
                     </div>
                 </form>

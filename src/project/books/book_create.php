@@ -133,11 +133,12 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="button">Save Book</button>
+                    <button id="submit" type="submit">Save Book</button>
                     <div class="button"><a href="index.php">Cancel</a></div>
                 </div>
             </form>
             <?php ?>
+            <script src="validate.js"></script>
         </body>
     </html>
 <?php
