@@ -1,17 +1,14 @@
 <?php
-require_once __DIR__ . '/lib/config.php';
-// =============================================================================
-// Create PDO connection
-// =============================================================================
-try {
-    $db = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
-} 
-catch (PDOException $e) {
-    echo "<p class='error'>Connection failed: " . $e->getMessage() . "</p>";
-    exit();
-}
-// =============================================================================
+    require_once __DIR__ . '/lib/config.php';
+    try {
+        $db = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+    } 
+    catch (PDOException $e) {
+        echo "<p class='error'>Connection failed: " . $e->getMessage() . "</p>";
+        exit();
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,42 +38,35 @@ catch (PDOException $e) {
         <h3>Your Solution:</h3>
         <div class="output">
             <?php
-            // TODO: Write your solution here
-            // 1. INSERT a temporary book
-            // 2. Get the new ID
-            // 3. Display "Created book with ID: X"
-            // 4. DELETE FROM books WHERE id = :id
-            // 5. Check rowCount()
-            // 6. Try to fetch the book again to verify deletion
-             $stmt = $db->prepare("INSERT INTO books (title, author, publisher_id, year, description)
-                VALUES (:title, :author, :publisher_id, :year, :description)
-            ");
+                $stmt = $db->prepare("INSERT INTO books (title, author, publisher_id, year, description)
+                    VALUES (:title, :author, :publisher_id, :year, :description)
+                ");
 
-            $stmt->execute([
-                'title' => 'My Book',
-                'author' => 'Darren Carroll',
-                'publisher_id' => 1,
-                'year' => 2025,
-                'description' => 'A book I created'
-            ]);
-            $id = $db->lastInsertId();
-            echo "Created book with ID: " . $id . "<br/>";
+                $stmt->execute([
+                    'title' => 'My Book',
+                    'author' => 'Darren Carroll',
+                    'publisher_id' => 1,
+                    'year' => 2025,
+                    'description' => 'A book I created'
+                ]);
+                $id = $db->lastInsertId();
+                echo "Created book with ID: " . $id . "<br/>";
 
-            $stmt = $db->prepare("DELETE FROM books WHERE id = :id");
-            $stmt->execute(['id' => $id]);
+                $stmt = $db->prepare("DELETE FROM books WHERE id = :id");
+                $stmt->execute(['id' => $id]);
 
-            echo "Deleted book<br/>";
+                echo "Deleted book<br/>";
 
-            $stmt = $db->prepare("SELECT * FROM books WHERE id = :id");
-            $stmt->execute(['id' => $id]);
+                $stmt = $db->prepare("SELECT * FROM books WHERE id = :id");
+                $stmt->execute(['id' => $id]);
 
-            $book = $stmt->fetch();
+                $book = $stmt->fetch();
 
-            if ($book) {
-                echo "Found: " . $book['title'];
-            } else {
-                echo "Book not found";
-            }
+                if ($book) {
+                    echo "Found: " . $book['title'];
+                } else {
+                    echo "Book not found";
+                }
             ?>
         </div>
     </div>

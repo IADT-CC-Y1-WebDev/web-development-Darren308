@@ -1,5 +1,4 @@
 <?php
-
     function old($key, $default = null) {
         $result = $default;
         if (isset($_SESSION["form-data"])) {

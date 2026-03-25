@@ -13,6 +13,7 @@
     $genres = ['RPG', 'Sports', 'Puzzle', 'Simulation', 'Action', 'Action-Adventure'];
     $platforms = ['PC', 'PS5', 'Xbox', 'Nintendo Switch'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

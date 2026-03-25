@@ -1,8 +1,8 @@
-let applyBtn = document.getElementById('apply_filters');
+let applyBtn       = document.getElementById('apply_filters');
 let clearBtn       = document.getElementById('clear_filters');
 let cardsContainer = document.getElementById('game_cards');
-let cards    = document.querySelectorAll('.card');
-let form     = document.getElementById('filters');
+let cards          = document.querySelectorAll('.card');
+let form           = document.getElementById('filters');
 
 applyBtn.addEventListener('click', (event) =>{
     event.preventDefault();
@@ -75,5 +75,15 @@ function getFilters(){
 }
 
 function clearFilters(){
-    console.log('Clearing filters');
+    form.reset();
+
+    cards.forEach(function (card){
+        card.classList.remove('hidden');
+    })
+
+    let cardsArray = Array.from(cards);
+    const sorted = sortCards(cardsArray, 'title');
+    sorted.forEach(card => {
+        cardsContainer.appendChild(card);
+    })
 }

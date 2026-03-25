@@ -1,5 +1,3 @@
-// 09-2: Games-style form validation (formHandler pattern)
-
 let submit = document.getElementById('submit');
 let gameForm = document.getElementById('game_form');
 let errorSummaryTop = document.getElementById('error_summary_top');

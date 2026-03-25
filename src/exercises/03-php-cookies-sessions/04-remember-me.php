@@ -1,67 +1,43 @@
 <?php
-// =============================================================================
-// EXERCISE: Remember Me - Cookies + Sessions Combined
-// =============================================================================
-// Complete the TODO sections to implement a "Remember Me" login simulation.
-// This shows how cookies and sessions work together.
-// =============================================================================
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $users = ['alice', 'bob', 'charlie', 'dana'];
 
-// TODO Exercise 1: Start the session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-// Available users (this is provided for you)
-$users = ['alice', 'bob', 'charlie', 'dana'];
+    if (isset($_GET['login'])) {
+        $username = $_GET['login'];
+        if (in_array($username, $users)) {
+            $_SESSION['logged_in_user'] = $username;
+            if (isset($_GET['remember'])) {
+                setcookie('remember_user', $username, time() + 60 * 60 * 24 * 30, '/');
+            }
+            header('Location: 04-remember-me.php');
+        exit;
+        }
+    }
 
-// TODO Exercise 2: Handle "Login" action
-// When $_GET['login'] is set:
-// 1. Get the username from $_GET['login']
-// 2. Check if the username is in the $users array (use in_array())
-// 3. If valid, set $_SESSION['logged_in_user'] to the username
-// 4. If $_GET['remember'] is also set, save a cookie 'remembered_user' (30 days)
-// 5. Redirect back to this page
-if (isset($_GET['login'])) {
-    $username = $_GET['login'];
-    if (in_array($username, $users)) {
-        $_SESSION['logged_in_user'] = $username;
-        if (isset($_GET['remember'])) {
-            setcookie('remember_user', $username, time() + 60 * 60 * 24 * 30, '/');
+    if (isset($_GET['logout'])) {
+        unset($_SESSION['logged_in_user']);
+        if (isset($_GET['forget'])) {
+            setcookie('remember_user', '', time() - 3600, '/');
         }
         header('Location: 04-remember-me.php');
-    exit;
+        exit;
     }
-}
 
-// TODO Exercise 3: Handle "Logout" action
-// When $_GET['logout'] is set:
-// 1. Unset $_SESSION['logged_in_user']
-// 2. If $_GET['forget'] is also set, delete the 'remembered_user' cookie
-// 3. Redirect back to this page
-if (isset($_GET['logout'])) {
-    unset($_SESSION['logged_in_user']);
-    if (isset($_GET['forget'])) {
+
+    if (isset($_GET['clear_cookie'])) {
         setcookie('remember_user', '', time() - 3600, '/');
+
+        header('Location: 04-remember-me.php');
+        exit;
     }
-    header('Location: 04-remember-me.php');
-    exit;
-}
 
-// TODO Exercise 4: Handle "Clear Remember Cookie" action
-// When $_GET['clear_cookie'] is set:
-// 1. Delete the 'remembered_user' cookie
-// 2. Redirect back to this page
-if (isset($_GET['clear_cookie'])) {
-    setcookie('remember_user', '', time() - 3600, '/');
-
-    header('Location: 04-remember-me.php');
-    exit;
-}
-
-// Determine current state (this is provided for you)
-$isLoggedIn = isset($_SESSION['logged_in_user']);
-$currentUser = $isLoggedIn ? $_SESSION['logged_in_user'] : null;
-$rememberedUser = isset($_COOKIE['remembered_user']) ? $_COOKIE['remembered_user'] : null;
+    $isLoggedIn = isset($_SESSION['logged_in_user']);
+    $currentUser = $isLoggedIn ? $_SESSION['logged_in_user'] : null;
+    $rememberedUser = isset($_COOKIE['remembered_user']) ? $_COOKIE['remembered_user'] : null;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -211,10 +187,6 @@ $rememberedUser = isset($_COOKIE['remembered_user']) ? $_COOKIE['remembered_user
     <p class="output-label">Write your observations here:</p>
     <div class="output">
         <?php
-        // TODO: After testing, write a comment explaining:
-        // 1. What is the session used for?
-        // 2. What is the cookie used for?
-        // 3. Why use both together?
         echo "1. A session is the data of the period of time of the most recent instance of the user on the web." . "<br/>";
         echo "2. A cookie is remembered data from recent sessions and is kept on the device." . "<br/>";
         echo "3. Cookies store data on the client-side, while sessions store data on the server-side.";

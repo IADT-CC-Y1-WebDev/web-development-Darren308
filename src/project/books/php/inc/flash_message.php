@@ -1,5 +1,4 @@
 <?php
-
     require_once 'php/lib/session.php';
     require_once 'php/lib/utils.php';
 

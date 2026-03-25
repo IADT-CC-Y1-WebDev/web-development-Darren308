@@ -125,8 +125,5 @@ function onSubmitForm(evt) {
 
     if(Object.keys(errors).length === 0){
         alert('Form validated');
-        // gameForm.submit();
-
     }
-
 }

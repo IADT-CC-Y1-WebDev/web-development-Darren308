@@ -1,5 +1,4 @@
 <?php
-
     require_once 'php/lib/config.php';
     require_once 'php/lib/session.php';
     require_once 'php/lib/forms.php';
@@ -33,9 +32,9 @@
         </head>
         <body>
             <?php require 'php/inc/flash_message.php'; ?>
-                <div class="back-link">
-                    <a href="index.php">&larr; Back to Form Handling </a>
-                </div>
+            <div class="back-link">
+                <a href="index.php">&larr; Back to Form Handling </a>
+            </div>
 
             <h1>Add New Book</h1>
 

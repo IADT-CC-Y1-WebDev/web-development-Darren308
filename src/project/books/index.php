@@ -1,5 +1,4 @@
 <?php
-
     require_once 'php/lib/config.php';
     require_once 'php/lib/utils.php';
 
@@ -13,6 +12,7 @@
     }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
