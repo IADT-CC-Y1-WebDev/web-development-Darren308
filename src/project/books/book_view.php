@@ -28,7 +28,6 @@
         echo 'Error: ' . $e->getMessage();
         exit();
     }
-
 ?>
 
 <!DOCTYPE html>

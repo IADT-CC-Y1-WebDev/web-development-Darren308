@@ -190,3 +190,11 @@ form {
 	color: #252525;
 	font-weight: 900;
 }
+
+.error-summary {
+	border-radius: 6px;
+	border: 1px solid #b00020;
+	background: #fff5f5;
+	padding: 0.75rem 1rem;
+	margin-bottom: 0.75rem;
+}

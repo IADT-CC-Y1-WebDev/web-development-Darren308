@@ -6,60 +6,42 @@
 
     startSession();
 
-    $publishers = [
-        ['id' => 1, 'name' => 'Penguin Random House'],
-        ['id' => 2, 'name' => 'HarperCollins'],
-        ['id' => 3, 'name' => 'Simon & Schuster'],
-        ['id' => 4, 'name' => 'Hachette Book Group'],
-        ['id' => 5, 'name' => 'Macmillan Publishers'],
-        ['id' => 6, 'name' => 'Scholastic Corporation'],
-        ['id' => 7, 'name' => 'O\'Reilly Media']
-    ];
+    try{
+        $publisher = Publisher::findAll();
+        $formats = Format::findAll();
+    }
+    
+    catch (PDOException $e) {
+        setFlashMessage('error', 'Error: ' . $e->getMessage());
+        redirect('/index.php');
+    }
 
-    $formats = [
-        ['id' => 1, 'name' => 'Hardcover'],
-        ['id' => 2, 'name' => 'Paperback'],
-        ['id' => 3, 'name' => 'Ebook'],
-        ['id' => 4, 'name' => 'Audiobook']
-    ];
+?>
 
-    ?>
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <?php include 'php/inc/head_content.php'; ?>
-            <title>Add New Book - Exercise</title>
-        </head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <?php include 'php/inc/head_content.php'; ?>
+        <title>Add New Book</title>
+    </head>
+
         <body>
             <?php require 'php/inc/flash_message.php'; ?>
-            <div class="back-link">
-                <a href="index.php">&larr; Back to Form Handling </a>
-            </div>
 
             <h1>Add New Book</h1>
 
-            <?php dd(getFormData()); ?>
-            <?php dd(getFormErrors()); ?>
-
             <form action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
-
+                <div id="error_summary_top" class="error-summary" style="display:none" role="alert"></div>
                 <div class="form-group">
                     <label for="title">Book Title:</label>
                     <input type="text" id="title" name="title" value="<?= h(old('title')) ?>">
-
-                    <div>
-                        <?php if (error('title')): ?>
-                            <p class="error"><?= error('title') ?></p>
-                        <?php endif; ?>
-                    </div>
+                        <p id="title_error" class="error"><?= error('title') ?></p>
                 </div>
+
                 <div class="form-group">
                     <label for="author">Author:</label>
                     <input type="text" id="author" name="author" value="<?= h(old('author')) ?>">
-
-                    <?php if (error('author')): ?>
-                        <p class="error"><?= error('author') ?></p>
-                    <?php endif; ?>
+                        <p id="author_error" class="error"><?= error('author') ?></p>
                 </div>
 
                 <div class="form-group">
@@ -80,11 +62,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="year">Year:</label>
-                    <input type="text" id="year" name="year" value="<?= h(old('year')) ?>">
+                    <label for="release_date">Year:</label>
+                    <input type="text" id="release_date" name="release_date" value="<?= h(old('release_date')) ?>">
 
-                    <?php if (error('year')): ?>
-                        <p class="error"><?= error('year') ?></p>
+                    <?php if (error('release_date')): ?>
+                        <p class="error"><?= error('release_date') ?></p>
                     <?php endif; ?>
                 </div>
 
@@ -97,15 +79,22 @@
                     <?php endif; ?>
                 </div>
 
-                <div class="form-group">
-                    <label>Available Formats:</label>
-                    <div class="checkbox-group">
-                        <?php foreach ($formats as $format): ?>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="format_ids[]" value="<?= $format['id'] ?>"<?=chosen('format_ids', $format['id']) ? "checked" : ""?>>
-                                <?= h($format['name']) ?>
-                            </label>
-                        <?php endforeach; ?>
+                    <div class="input">
+                        <span class="label-style">Formats</span>
+                        <div>
+                            <?php foreach ($formats as $format) { ?>
+                                <div>
+                                    <input type="checkbox"
+                                        id="format_<?= h($format->id) ?>" 
+                                        name="format_ids[]" 
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_ids', $format->id) ? "checked" : "" ?>
+                                    >
+                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <p><?= error('platforms_ids') ?></p>
                     </div>
 
                     <?php if (error('format_ids')): ?>
@@ -133,13 +122,15 @@
 
                 <div class="form-group">
                     <button id="submit" type="submit">Save Book</button>
-                    <div class="button"><a href="index.php">Cancel</a></div>
+                    <div class="button">
+                        <a href="index.php">Cancel</a>
+                    </div>
                 </div>
             </form>
-            <?php ?>
             <script src="validate.js"></script>
         </body>
     </html>
+    
 <?php
     clearFormData();
     clearFormErrors();

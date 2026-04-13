@@ -15,21 +15,21 @@
         }
 
         $data = [
-            'id' => $_POST['id'] ?? null,
-            'title' => $_POST['title'] ?? null,
-            'year' => $_POST['year'] ?? null,
-            'publisher_id' => $_POST['publisher_id'] ?? null,
-            'description' => $_POST['description'] ?? null,
-            'isbn' => $_POST['isbn'] ?? [],
+            'id'             => $_POST['id'] ?? null,
+            'title'          => $_POST['title'] ?? null,
+            'year'           => $_POST['year'] ?? null,
+            'publisher_id'   => $_POST['publisher_id'] ?? null,
+            'description'    => $_POST['description'] ?? null,
+            'isbn'           => $_POST['isbn'] ?? [],
             'cover_filename' => $_FILES['cover_filename'] ?? null
         ];
 
         $rules = [
-            'title' => 'required|notempty|min:1|max:255',
-            'publisher_id' => 'required|integer',
-            'year' => 'required|notempty|max:4|max:5000',
-            'isbn' => 'required|array|min:1|max:10',
-            'description' => 'required|notempty|min:1|max:255',
+            'title'          => 'required|notempty|min:1|max:255',
+            'publisher_id'   => 'required|integer',
+            'year'           => 'required|notempty|max:4|max:5000',
+            'isbn'           => 'required|array|min:1|max:10',
+            'description'    => 'required|notempty|min:1|max:255',
             'cover_filename' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
         ];
 
@@ -48,9 +48,9 @@
             throw new Exception('Book not found.');
         }
 
-        $genre = Genre::findById($data['genre_id']);
-        if (!$genre) {
-            throw new Exception('Selected genre does not exist.');
+        $author = Author::findById($data['author_id']);
+        if (!$author) {
+            throw new Exception('Selected author does not exist.');
         }
 
         foreach ($data['format_ids'] as $formatId) {

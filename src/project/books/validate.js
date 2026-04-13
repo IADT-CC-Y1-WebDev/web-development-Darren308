@@ -1,20 +1,20 @@
-let submit = document.getElementById('submit');
-let gameForm = document.getElementById('game_form');
-let errorSummaryTop = document.getElementById('error_summary_top');
+let submit              = document.getElementById('submit');
+let gameForm            = document.getElementById('game_form');
+let errorSummaryTop     = document.getElementById('error_summary_top');
 
-let titleInput = document.getElementById('title');
-let releaseDateInput = document.getElementById('release_date');
-let genreIdInput = document.getElementById('genre_id');
-let descriptionInput = document.getElementById('description');
-let platformIdsInput = document.getElementsByName('platform_ids[]');
-let imageInput = document.getElementById('image');
+let titleInput          = document.getElementById('title');
+let releaseDateInput    = document.getElementById('release_date');
+let authorInput         = document.getElementById('author');
+let descriptionInput    = document.getElementById('description');
+let platformIdsInput    = document.getElementsByName('platform_ids[]');
+let cover_filenameInput = document.getElementById('cover_filename');
 
-let titleError = document.getElementById('title_error');
-let releaseDateError = document.getElementById('release_date_error');
-let genreIdError = document.getElementById('genre_id_error');
-let descriptionError = document.getElementById('description_error');
-let platformIdsError = document.getElementById('platform_ids_error');
-let imageError = document.getElementById('image_error');
+let titleError          = document.getElementById('title_error');
+let releaseDateError    = document.getElementById('release_date_error');
+let authorError         = document.getElementById('author_error');
+let descriptionError    = document.getElementById('description_error');
+let platformIdsError    = document.getElementById('platform_ids_error');
+let cover_filenameError = document.getElementById('cover_filename_error');
 
 let errors = {};
 
@@ -31,6 +31,7 @@ function showErrorSummaryTop() {
         errorSummaryTop.innerHTML = '';
         return;
     }
+
     errorSummaryTop.innerHTML =
         '<strong>Please fix the following:</strong><ul>' +
         messages
@@ -43,12 +44,12 @@ function showErrorSummaryTop() {
 }
 
 function showFieldErrors() {
-    titleError.innerHTML = errors.title || '';
-    releaseDateError.innerHTML = errors.release_date || '';
-    genreIdError.innerHTML = errors.genre_id || '';
-    descriptionError.innerHTML = errors.description || '';
-    platformIdsError.innerHTML = errors.platform_ids || '';
-    imageError.innerHTML = errors.image || '';
+    titleError.innerHTML          = errors.title || '';
+    releaseDateError.innerHTML    = errors.release_date || '';
+    authorError.innerHTML         = errors.author || '';
+    descriptionError.innerHTML    = errors.description || '';
+    platformIdsError.innerHTML    = errors.platform_ids || '';
+    cover_filenameError.innerHTML = errors.cover_filename || '';
 }
 
 function isRequired(value) {
@@ -70,9 +71,8 @@ function onSubmitForm(evt) {
 
     const titleMin = Number(titleInput.dataset.minlength || 3);
     const titleMax = Number(titleInput.dataset.maxlength || 255);
-    const descMin = Number(descriptionInput.dataset.minlength || 10);
+    const descMin  = Number(descriptionInput.dataset.minlength || 10);
 
-    // title
     if (!isRequired(titleInput.value)) {
         addError('title', 'Title is required.');
     } else if (!isMinLength(titleInput.value, titleMin)) {
@@ -84,7 +84,6 @@ function onSubmitForm(evt) {
         addError('title', 'Title must be at most ' + titleMax + ' characters.');
     }
 
-    // release_date
     if (!isRequired(releaseDateInput.value)) {
         addError('release_date', 'Release year is required.');
     } else {
@@ -94,12 +93,10 @@ function onSubmitForm(evt) {
         }
     }
 
-    // genre_id
-    if (!isRequired(genreIdInput.value)) {
-        addError('genre_id', 'Genre is required.');
+    if (!isRequired(authorInput.value)) {
+        addError('author', 'Auhtor is required.');
     }
 
-    // description
     if (!isRequired(descriptionInput.value)) {
         addError('description', 'Description is required.');
     } else if (!isMinLength(descriptionInput.value, descMin)) {
@@ -109,7 +106,6 @@ function onSubmitForm(evt) {
         );
     }
 
-    // platform_ids
     let platformChecked = false;
     for (let i = 0; i < platformIdsInput.length; i++) {
         if (platformIdsInput[i].checked) {
@@ -121,9 +117,8 @@ function onSubmitForm(evt) {
         addError('platform_ids', 'Select at least one platform.');
     }
 
-    // image
-    if (!imageInput.files || imageInput.files.length === 0) {
-        addError('image', 'Image is required.');
+    if (!cover_filenameInput.files || cover_filenameInput.files.length === 0) {
+        addError('cover_filename', 'Image is required.');
     }
 
     showErrorSummaryTop();
