@@ -1,6 +1,6 @@
 let applyBtn       = document.getElementById('apply_filters');
 let clearBtn       = document.getElementById('clear_filters');
-let cardsContainer = document.getElementById('game_cards');
+let cardsContainer = document.getElementById('book_cards');
 let cards          = document.querySelectorAll('.card');
 let form           = document.getElementById('filters');
 
@@ -33,11 +33,11 @@ function sortCards(cards, sortby){
         list.sort((a,b) => {
         let titleA = a.dataset.title.toLowerCase();
         let titleB = b.dataset.title.toLowerCase();
-        let yearA  = Number(a.dataset.year);
-        let yearB  = Number(b.dataset.year);
+        let release_dateA  = Number(a.dataset.release_date);
+        let release_dateB  = Number(b.dataset.release_date);
 
-        if (sortby === 'year_desc') return yearB - yearA;
-        if (sortby === 'year_asc') return yearA - yearB;
+        if (sortby === 'release_date_desc') return release_dateB - release_dateA;
+        if (sortby === 'release_date_asc') return release_dateA - release_dateB;
 
         return titleA.localeCompare(titleB);
     });
@@ -46,30 +46,30 @@ function sortCards(cards, sortby){
 
 function cardMatches(crd, fltr){
     let title          = crd.dataset.title.toLowerCase();
-    let author          = crd.dataset.author;
-    let platform       = crd.dataset.platform;
+    let author         = crd.dataset.author;
+    let format         = crd.dataset.format;
     let matchTitle     = fltr.titleFilter    === '' || title.includes(fltr.titleFilter);
-    let matchAuthor     = fltr.authorFilter    === '' || author === fltr.gameFilter;
-    let matchPlatform  = fltr.platformFilter === '' || platform.includes (fltr.platformFilter);
+    let matchAuthor    = fltr.authorFilter   === '' || author === fltr.bookFilter;
+    let matchFormat    = fltr.formatFilter   === '' || format.includes (fltr.formatFilter);
 
-    return matchTitle && matchAuthor && matchPlatform;
+    return matchTitle && matchAuthor && matchFormat;
 }
 
 function getFilters(){
     const titleE1      = form.elements['title_filter'];
-    const authorE1      = form.elements['author_filter'];
-    const platformE1   = form.elements['platform_filter'];
+    const authorE1     = form.elements['author_filter'];
+    const formatE1     = form.elements['format_filter'];
     const sortE1       = form.elements['sort_by'];
 
     let titleFilter    = (titleE1.value ||'').trim().toLowerCase();
-    let authorFilter    = authorE1.value ||'';
-    let platformFilter = platformE1.value ||'';
+    let authorFilter   = authorE1.value ||'';
+    let formatFilter   = formatE1.value ||'';
     let sortby         = sortE1.value ||'title_asc';
 
     return {
         titleFilter,
         authorFilter,
-        platformFilter,
+        formatFilter,
         sortby
     };
 }

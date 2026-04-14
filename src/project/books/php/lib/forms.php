@@ -25,18 +25,23 @@
         $result = false;
         if (isset($_SESSION["form-data"])) {
             $data = $_SESSION["form-data"];
+
             if (is_array($data) && array_key_exists($key, $data)) {
                 $value = $data[$key];
+
                 if (is_array($value)) {
                     $result = in_array($search, $value);
-                } else {
+                } 
+                else {
                     $result = strcmp($value, $search) === 0;
                 }
             }
+
         } else if ($default !== null) {
             if (is_array($default)) {
                 $result = in_array($search, $default);
-            } else {
+            } 
+            else {
                 $result = strcmp($default, $search) === 0;
             }
         }

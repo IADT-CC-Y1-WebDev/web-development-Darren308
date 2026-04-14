@@ -14,23 +14,27 @@
             throw new Exception('Invalid request method.');
         }
         $data = [
-            'title' => $_POST['title'] ?? null,
-            'publisher_id' => $_POST['publisher_id'] ?? null,
-            'year' => $_POST['year'] ?? null,
-            'isbn' => $_POST['isbn'] ?? null,
-            'description' => $_POST['description'] ?? null,
-            'format_ids' => $_POST['format_ids'] ?? null,
+            'title'          => $_POST['title'] ?? null,
+            'author'         => $_POST['author'] ?? null,
+            'publisher_id'   => $_POST['publisher_id'] ?? null,
+            'release_date'   => $_POST['release_date'] ?? null,
+            'isbn'           => $_POST['isbn'] ?? null,
+            'description'    => $_POST['description'] ?? null,
+            'format_ids'     => $_POST['format_ids'] ?? "",
             'cover_filename' => $_FILES['cover_filename'] ?? null
         ];
-        $year = date('Y');
+
+        $release_date = date('Y');
+
         $rules = [
-            'title' => 'required|notempty|min:5|max:255',
-            'publisher_id' => 'required|notempty|integer',
-            'year' => 'required|notempty|minvalue:1900|maxvalue:' . $year,
-            'isbn' => 'required|notempty|min:13|max:13',
-            'format_ids' => 'required|notempty|array|min:1|max:4',
-            'description' => 'required|notempty|min:10',
-            'cover_filename' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
+            'title'          => 'required|notempty|min:5|max:255',
+            'author'         => 'required|notempty|min:5',
+            'publisher_id'   => 'required|notempty|integer',
+            'release_date'   => 'required|notempty|minvalue:1900|maxvalue:' . $release_date,
+            'isbn'           => 'required|notempty|min:13|max:13',
+            'format_ids'     => 'required|notempty|array|min:1|max:4',
+            'description'    => 'required|notempty|min:10',
+            'cover_filename' => 'required|notempty|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
         ];
 
         $validator = new Validator ($data, $rules);
@@ -43,7 +47,7 @@
         }
 
         $uploader = new ImageUpload();
-        $imageFilename = $uploader->process($_FILES['cover_filename']);
+        $coverFilename = $uploader->process($_FILES['cover_filename']);
 
         clearFormData();
         clearFormErrors();

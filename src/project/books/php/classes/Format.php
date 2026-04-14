@@ -39,7 +39,7 @@
         public static function findByBook($bookId) {
             $db = DB::getInstance()->getConnection();
             $stmt = $db->prepare("SELECT f.* FROM formats f
-                INNER JOIN book_format bf ON f.id = bf.format_id
+                INNER JOIN book_format bf ON f.id = bf.format_ids
                 WHERE bf.book_id = :book_id
                 ORDER BY f.name
             ");

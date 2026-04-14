@@ -57,7 +57,7 @@
 
                     <div class="bottom-content">
                         <h2><?= htmlspecialchars($book->title) ?></h2>
-                        <p>Year: <?= htmlspecialchars($book->year) ?></p>
+                        <p>Year: <?= htmlspecialchars($book->release_date) ?></p>
                         <p>Publisher: <?= htmlspecialchars($publisher->name) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
                         <p>Formats: <?= implode(', ', $formatNames) ?></p>

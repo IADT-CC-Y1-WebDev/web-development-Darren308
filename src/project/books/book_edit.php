@@ -13,20 +13,23 @@
         if (!array_key_exists('id', $_GET)) {
             throw new Exception('No book ID provided.');
         }
+
         $id = $_GET['id'];
 
         $book = Book::findById($id);
+
         if ($book === null) {
             throw new Exception("Book not found.");
         }
 
         $bookFormats = Format::findByBook($book->id);
         $bookFormatsIds = [];
+        
         foreach ($bookFormats as $format) {
             $bookFormatsIds[] = $format->id;
         }
 
-        $publishers = Publisher::findAll();
+        $publisher = Publisher::findAll();
         $formats = Format::findAll();
     }
 
@@ -63,19 +66,19 @@
                             </div>
                         </div>
                         <div class="input">
-                            <label class="special" for="year">Year:</label>
+                            <label class="special" for="release_date">Year:</label>
                             <div>
-                                <input type="year" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
-                                <p><?= error('year') ?></p>
+                                <input type="release_date" id="release_date" name="release_date" value="<?= old('release_date', $book->release_date) ?>" required>
+                                <p><?= error('release_date') ?></p>
                             </div>
                         </div>
                         <div class="input">
-                            <label class="special" for="publisher">Publisher:</label>
+                            <label class="special" for="publisher_id">Publisher:</label>
                             <div>
-                                <select id="publisher" name="publisher_id" required>
-                                    <?php foreach ($publishers as $publisher) { ?>
-                                        <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id, $book->publisher_id) ? "selected" : "" ?>>
-                                            <?= h($publisher->name) ?>
+                                <select id="publisher_id" name="publisher_id" required>
+                                    <?php foreach ($publisher as $pub) { ?>
+                                        <option value="<?= h($pub->id) ?>" <?= chosen('publisher_id', $pub->id, $book->pub_id) ? "selected" : "" ?>>
+                                            <?= h($pub->name) ?>
                                         </option>
                                     <?php } ?>
                                 </select>
@@ -95,11 +98,11 @@
                                 <?php foreach ($formats as $format) { ?>
                                     <div>
                                         <input type="checkbox" 
-                                            id="format_<?= h($format->id) ?>" 
+                                            id="format_ids<?= h($format->id) ?>" 
                                             name="format_ids[]" 
                                             value="<?= h($format->id) ?>"
                                             <?= chosen('format_ids', $format->id, $bookFormatsIds) ? "checked" : "" ?>>
-                                        <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
+                                        <label for="format_ids<?= h($format->id) ?>"><?= h($format->name) ?></label>
                                     </div>
                                 <?php } ?>
                             </div>
@@ -107,12 +110,13 @@
                         </div>
                         <div><img src="images/<?= $book->cover_filename ?>" /></div>
                         <div class="input">
-                            <label class="special" for="image">Image (optional):</label>
+                            <label class="special" for="cover_filename">Image (optional):</label>
                             <div>
-                                <input type="file" id="image" name="image" accept="image/*">
-                                <p><?= error('image') ?></p>
+                                <input type="file" id="cover_filename" name="cover_filename" accept="image/*">
+                                <p><?= error('cover_filename') ?></p>
                             </div>
                         </div>
+                        
                         <div class="input">
                             <button class="button" type="submit">Update Book</button>
                             <div class="button"><a href="index.php">Cancel</a></div>

@@ -19,13 +19,13 @@
                 </div>
             </div>
             <div class="input">
-                <label class="filter-label" for="platform_filter">Platform:</label>
+                <label class="filter-label" for="format_filter">Format:</label>
                 <div>
-                    <select id="platform_filter" name="platform_filter">
-                        <option value="">All Platforms</option>
-                        <?php foreach ($platforms as $platform): ?>
-                            <option value="<?= htmlspecialchars($platform) ?>">
-                                <?= htmlspecialchars($platform) ?>
+                    <select id="format_filter" name="format_filter">
+                        <option value="">All Formats</option>
+                        <?php foreach ($formats as $format): ?>
+                            <option value="<?= htmlspecialchars($format) ?>">
+                                <?= htmlspecialchars($format) ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
@@ -36,8 +36,8 @@
                 <div>
                     <select id="sort_by" name="sort_by">
                         <option value="title_asc">Title A-Z</option>
-                        <option value="year_desc">Year (newest first)</option>
-                        <option value="year_asc">Year (oldest first)</option>
+                        <option value="release_date_desc">Year (newest first)</option>
+                        <option value="release_date_asc">Year (oldest first)</option>
                     </select>
                 </div>
             </div>
@@ -55,10 +55,10 @@
                 <div class="card"
                     data-title="<?= htmlspecialchars($game['title']) ?>"
                     data-author="<?= htmlspecialchars($game['author']) ?>"
-                    data-platform="<?= htmlspecialchars($game['platform']) ?>"
-                    data-year="<?= $game['year'] ?>">
+                    data-format="<?= htmlspecialchars($game['format']) ?>"
+                    data-release_date="<?= $game['release_date'] ?>">
                     <h3><?= htmlspecialchars($game['title']) ?></h3>
-                    <p><?= htmlspecialchars($game['author']) ?> · <?= htmlspecialchars($game['platform']) ?> (<?= (int) $game['year'] ?>)</p>
+                    <p><?= htmlspecialchars($game['author']) ?> · <?= htmlspecialchars($game['format']) ?> (<?= (int) $game['release_date'] ?>)</p>
                 </div>
             <?php endforeach; ?>
         </div>

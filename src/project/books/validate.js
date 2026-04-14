@@ -1,19 +1,19 @@
 let submit              = document.getElementById('submit');
-let gameForm            = document.getElementById('game_form');
+let bookForm            = document.getElementById('book_form');
 let errorSummaryTop     = document.getElementById('error_summary_top');
 
 let titleInput          = document.getElementById('title');
 let releaseDateInput    = document.getElementById('release_date');
 let authorInput         = document.getElementById('author');
 let descriptionInput    = document.getElementById('description');
-let platformIdsInput    = document.getElementsByName('platform_ids[]');
+let formatIdsInput      = document.getElementsByName('format_ids[]');
 let cover_filenameInput = document.getElementById('cover_filename');
 
 let titleError          = document.getElementById('title_error');
 let releaseDateError    = document.getElementById('release_date_error');
 let authorError         = document.getElementById('author_error');
 let descriptionError    = document.getElementById('description_error');
-let platformIdsError    = document.getElementById('platform_ids_error');
+let formatIdsError      = document.getElementById('format_ids_error');
 let cover_filenameError = document.getElementById('cover_filename_error');
 
 let errors = {};
@@ -38,17 +38,16 @@ function showErrorSummaryTop() {
             .map(function (m) {
                 return '<li>' + m + '</li>';
             })
-            .join('') +
-        '</ul>';
+            .join('') + '</ul>';
     errorSummaryTop.style.display = 'block';
 }
 
 function showFieldErrors() {
-    titleError.innerHTML          = errors.title || '';
-    releaseDateError.innerHTML    = errors.release_date || '';
-    authorError.innerHTML         = errors.author || '';
-    descriptionError.innerHTML    = errors.description || '';
-    platformIdsError.innerHTML    = errors.platform_ids || '';
+    titleError         .innerHTML = errors.title          || '';
+    authorError        .innerHTML = errors.author         || '';
+    releaseDateError   .innerHTML = errors.release_date   || '';
+    descriptionError   .innerHTML = errors.description    || '';
+    formatIdsError     .innerHTML = errors.format_ids   || '';
     cover_filenameError.innerHTML = errors.cover_filename || '';
 }
 
@@ -69,54 +68,62 @@ function onSubmitForm(evt) {
 
     errors = {};
 
-    const titleMin = Number(titleInput.dataset.minlength || 3);
+    const titleMin = Number(titleInput.dataset.minlength || 5);
     const titleMax = Number(titleInput.dataset.maxlength || 255);
     const descMin  = Number(descriptionInput.dataset.minlength || 10);
 
+    //title--
     if (!isRequired(titleInput.value)) {
         addError('title', 'Title is required.');
-    } else if (!isMinLength(titleInput.value, titleMin)) {
-        addError(
-            'title',
-            'Title must be at least ' + titleMin + ' characters.'
-        );
-    } else if (!isMaxLength(titleInput.value, titleMax)) {
+    } 
+    else if (!isMinLength(titleInput.value, titleMin)) {
+        addError('title', 'Title must be at least ' + titleMin + ' characters.');
+    } 
+    else if (!isMaxLength(titleInput.value, titleMax)) {
         addError('title', 'Title must be at most ' + titleMax + ' characters.');
     }
 
+    //author--
+    if (!isRequired(authorInput.value)) {
+        addError('author', 'Author is required.');
+    }
+    else if (!isMinLength(authorInput.value, titleMin)) {
+        addError('author', 'Author must be at least ' + titleMin + ' characters.');
+
+    //release date--
     if (!isRequired(releaseDateInput.value)) {
         addError('release_date', 'Release year is required.');
-    } else {
+    }
+    else {
         const date = new Date(releaseDateInput.value);
+        
         if (Number.isNaN(date.getTime())) {
             addError('release_date', 'Please enter a valid date.');
         }
     }
 
-    if (!isRequired(authorInput.value)) {
-        addError('author', 'Auhtor is required.');
-    }
-
+    //description--
     if (!isRequired(descriptionInput.value)) {
         addError('description', 'Description is required.');
-    } else if (!isMinLength(descriptionInput.value, descMin)) {
-        addError(
-            'description',
-            'Description must be at least ' + descMin + ' characters.'
-        );
+    } 
+    else if (!isMinLength(descriptionInput.value, descMin)) {
+        addError('description', 'Description must be at least ' + descMin + ' characters.');
     }
 
-    let platformChecked = false;
-    for (let i = 0; i < platformIdsInput.length; i++) {
-        if (platformIdsInput[i].checked) {
-            platformChecked = true;
+    let formatChecked = false;
+    for (let i = 0; i < formatIdsInput.length; i++) {
+        
+        if (formatIdsInput[i].checked) {
+            formatChecked = true;
             break;
         }
     }
-    if (!platformChecked) {
-        addError('platform_ids', 'Select at least one platform.');
+
+    if (!formatChecked) {
+        addError('format_ids', 'Select at least one format.');
     }
 
+    //image--
     if (!cover_filenameInput.files || cover_filenameInput.files.length === 0) {
         addError('cover_filename', 'Image is required.');
     }
@@ -125,9 +132,8 @@ function onSubmitForm(evt) {
     showFieldErrors();
 
     if (Object.keys(errors).length === 0) {
-        alert(
-            'Game form is valid. In a real app, this would submit to the server.'
-        );
-        gameForm.submit();
+        alert('Book form is valid. In a real app, this would submit to the server.');
+        bookForm.submit();
     }
+}
 }

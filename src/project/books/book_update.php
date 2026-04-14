@@ -15,22 +15,25 @@
         }
 
         $data = [
-            'id'             => $_POST['id'] ?? null,
             'title'          => $_POST['title'] ?? null,
-            'year'           => $_POST['year'] ?? null,
+            'author'         => $_POST['author'] ?? null,
+            'release_date'   => $_POST['release_date'] ?? null,
             'publisher_id'   => $_POST['publisher_id'] ?? null,
             'description'    => $_POST['description'] ?? null,
-            'isbn'           => $_POST['isbn'] ?? [],
+            'isbn'           => $_POST['isbn'] ?? null,
+            'format_ids'     => $_POST['format_ids'] ?? "", 
             'cover_filename' => $_FILES['cover_filename'] ?? null
         ];
 
         $rules = [
-            'title'          => 'required|notempty|min:1|max:255',
-            'publisher_id'   => 'required|integer',
-            'year'           => 'required|notempty|max:4|max:5000',
-            'isbn'           => 'required|array|min:1|max:10',
-            'description'    => 'required|notempty|min:1|max:255',
-            'cover_filename' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
+            'title'          => 'required|notempty|min:5|max:255',
+            'author'         => 'required|notempty|min:5',
+            'publisher_id'   => 'required|notempty|integer',
+            'release_date'   => 'required|notempty|minvalue:1900|maxvalue:' . $release_date,
+            'isbn'           => 'required|notempty|min:13|max:13',
+            'format_ids'     => 'required|notempty|array|min:1|max:4',
+            'description'    => 'required|notempty|min:10',
+            'cover_filename' => 'required|notempty|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
         ];
 
         $validator = new Validator($data, $rules);
@@ -70,7 +73,7 @@
         }
         
         $book->title = $data['title'];
-        $book->year = $data['year'];
+        $book->release_date = $data['release_date'];
         $book->publisher_id = $data['publisher_id'];
         $book->description = $data['description'];
         if ($imageFilename) {

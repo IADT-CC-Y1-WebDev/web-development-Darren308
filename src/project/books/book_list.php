@@ -60,15 +60,17 @@
                         </div>
                     </form>
                 </div>
+
             <?php } if (empty($books)) { ?>
                 <p>No books found.</p>
             <?php } else { ?>
+                
                 <div class="width-12 cards">
                     <?php foreach ($books as $book) { ?>
                         <div class="card">
                             <div class="top-content">
                                 <h2>Title: <?= h($book->title) ?></h2>
-                                <p>Year: <?= h($book->year) ?></p>
+                                <p>Year: <?= h($book->release_date) ?></p>
                             </div>
                             <div class="bottom-content">
                                 <img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" />
@@ -76,7 +78,6 @@
                                     <a href="book_view.php?id=<?= h($book->id) ?>">View</a>/ 
                                     <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>/ 
                                     <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a>
-                                    <a href="book_create.php?id=<?= h($book->id) ?>">Create</a>
                                     <a href="index.php">Back</a>
                                 </div>
                             </div>
