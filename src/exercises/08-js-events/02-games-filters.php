@@ -99,6 +99,7 @@
                     <input type="text" id="title_filter" name="title_filter" placeholder="Part of a title">
                 </div>
             </div>
+            
             <div class="input">
                 <label class="filter-label" for="genre_filter">Genre:</label>
                 <div>
@@ -112,6 +113,7 @@
                     </select>
                 </div>
             </div>
+
             <div class="input">
                 <label class="filter-label" for="platform_filter">Platform:</label>
                 <div>
@@ -125,6 +127,7 @@
                     </select>
                 </div>
             </div>
+
             <div class="input">
                 <label class="filter-label" for="sort_by">Sort:</label>
                 <div>
@@ -135,6 +138,7 @@
                     </select>
                 </div>
             </div>
+
             <div class="input">
                 <label class="filter-label" for="apply_filters">Actions</label>
                 <div>

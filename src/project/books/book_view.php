@@ -36,12 +36,14 @@
         <?php include 'php/inc/head_content.php'; ?>
         <title>View Book</title>
     </head>
+
     <body>
         <div class="container">
             <div class="width-12 header">
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
         </div>
+        
         <div class="container">
             <div class="width-12">
                 <div class="hCard">
@@ -57,7 +59,7 @@
 
                     <div class="bottom-content">
                         <h2><?= htmlspecialchars($book->title) ?></h2>
-                        <p>Year: <?= htmlspecialchars($book->release_date) ?></p>
+                        <p>Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Publisher: <?= htmlspecialchars($publisher->name) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
                         <p>Formats: <?= implode(', ', $formatNames) ?></p>

@@ -1,17 +1,21 @@
-let submit              = document.getElementById('submit');
+let submit              = document.getElementById('submitBtn');
 let bookForm            = document.getElementById('book_form');
 let errorSummaryTop     = document.getElementById('error_summary_top');
 
 let titleInput          = document.getElementById('title');
-let releaseDateInput    = document.getElementById('release_date');
 let authorInput         = document.getElementById('author');
+let publisher_id        = document.getElementById('publisher_id');
+let yearInput           = document.getElementById('year');
+let isbn                = document.getElementById('isbn');
 let descriptionInput    = document.getElementById('description');
 let formatIdsInput      = document.getElementsByName('format_ids[]');
 let cover_filenameInput = document.getElementById('cover_filename');
 
 let titleError          = document.getElementById('title_error');
-let releaseDateError    = document.getElementById('release_date_error');
 let authorError         = document.getElementById('author_error');
+let publisher_idError   = document.getElementById('publisher_id_error');
+let yearError           = document.getElementById('year_error');
+let isbnError           = document.getElementById('isbn_error');
 let descriptionError    = document.getElementById('description_error');
 let formatIdsError      = document.getElementById('format_ids_error');
 let cover_filenameError = document.getElementById('cover_filename_error');
@@ -45,9 +49,11 @@ function showErrorSummaryTop() {
 function showFieldErrors() {
     titleError         .innerHTML = errors.title          || '';
     authorError        .innerHTML = errors.author         || '';
-    releaseDateError   .innerHTML = errors.release_date   || '';
+    publisher_id       .innerHTMl = errors.publisher_id   || '';
+    yearError          .innerHTML = errors.year           || '';
+    isbnError          .innerHTML = errors.isbn           || '';
     descriptionError   .innerHTML = errors.description    || '';
-    formatIdsError     .innerHTML = errors.format_ids   || '';
+    formatIdsError     .innerHTML = errors.format_ids     || '';
     cover_filenameError.innerHTML = errors.cover_filename || '';
 }
 
@@ -89,16 +95,27 @@ function onSubmitForm(evt) {
     }
     else if (!isMinLength(authorInput.value, titleMin)) {
         addError('author', 'Author must be at least ' + titleMin + ' characters.');
-
+    }
     //release date--
-    if (!isRequired(releaseDateInput.value)) {
-        addError('release_date', 'Release year is required.');
+    if (!isRequired(yearInput.value)) {
+        addError('year', 'Release year is required.');
     }
     else {
-        const date = new Date(releaseDateInput.value);
-        
-        if (Number.isNaN(date.getTime())) {
-            addError('release_date', 'Please enter a valid date.');
+        const year = parseInt(yearInput.value);
+        const today = new Date();
+
+        if (!Number.isInteger(year)) {
+            addError('year', 'Please enter a valid year.');
+        }
+        else {
+            let thisYear = today.getFullYear();
+
+            if (year < 1900) {
+                addError('year', 'Please enter year greater than or equal to 1900.');
+            }
+            else if (year > thisYear) {
+                addError('year', 'Please enter year less than or equal to ' + thisYear + '.');
+            }
         }
     }
 
@@ -135,5 +152,4 @@ function onSubmitForm(evt) {
         alert('Book form is valid. In a real app, this would submit to the server.');
         bookForm.submit();
     }
-}
 }

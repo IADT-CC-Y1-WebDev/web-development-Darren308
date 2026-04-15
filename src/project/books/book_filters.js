@@ -33,11 +33,11 @@ function sortCards(cards, sortby){
         list.sort((a,b) => {
         let titleA = a.dataset.title.toLowerCase();
         let titleB = b.dataset.title.toLowerCase();
-        let release_dateA  = Number(a.dataset.release_date);
-        let release_dateB  = Number(b.dataset.release_date);
+        let yearA  = Number(a.dataset.year);
+        let yearB  = Number(b.dataset.year);
 
-        if (sortby === 'release_date_desc') return release_dateB - release_dateA;
-        if (sortby === 'release_date_asc') return release_dateA - release_dateB;
+        if (sortby === 'year_desc') return yearB - yearA;
+        if (sortby === 'year_asc') return yearA - yearB;
 
         return titleA.localeCompare(titleB);
     });
@@ -45,31 +45,31 @@ function sortCards(cards, sortby){
 }
 
 function cardMatches(crd, fltr){
-    let title          = crd.dataset.title.toLowerCase();
-    let author         = crd.dataset.author;
-    let format         = crd.dataset.format;
-    let matchTitle     = fltr.titleFilter    === '' || title.includes(fltr.titleFilter);
-    let matchAuthor    = fltr.authorFilter   === '' || author === fltr.bookFilter;
-    let matchFormat    = fltr.formatFilter   === '' || format.includes (fltr.formatFilter);
+    let title           = crd.dataset.title.toLowerCase();
+    let author          = crd.dataset.author.toLowerCase();
+    let format_ids      = crd.dataset.format_ids;
+    let matchTitle      = fltr.titleFilter      === '' || title.includes(fltr.titleFilter);
+    let matchAuthor     = fltr.authorFilter     === '' || author === fltr.bookFilter;
+    let matchFormat_ids = fltr.format_idsFilter === '' || format_ids.includes (fltr.format_idsFilter);
 
     return matchTitle && matchAuthor && matchFormat;
 }
 
 function getFilters(){
-    const titleE1      = form.elements['title_filter'];
-    const authorE1     = form.elements['author_filter'];
-    const formatE1     = form.elements['format_filter'];
-    const sortE1       = form.elements['sort_by'];
+    const titleE1        = form.elements['title_filter'];
+    const authorE1       = form.elements['author_filter'];
+    const format_idsE1   = form.elements['format_ids_filter'];
+    const sortE1         = form.elements['sort_by'];
 
-    let titleFilter    = (titleE1.value ||'').trim().toLowerCase();
-    let authorFilter   = authorE1.value ||'';
-    let formatFilter   = formatE1.value ||'';
-    let sortby         = sortE1.value ||'title_asc';
+    let titleFilter      = (titleE1.value      ||'').trim().toLowerCase();
+    let authorFilter     = (authorE1.value     ||'').trim().toLowerCase();
+    let format_idsFilter = (format_idsE1.value ||'').trim().toLowerCase();
+    let sortby           = sortE1.value       ||'title_asc';
 
     return {
         titleFilter,
         authorFilter,
-        formatFilter,
+        format_idsFilter,
         sortby
     };
 }

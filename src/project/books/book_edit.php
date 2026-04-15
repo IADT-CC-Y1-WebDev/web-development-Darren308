@@ -66,10 +66,10 @@
                             </div>
                         </div>
                         <div class="input">
-                            <label class="special" for="release_date">Year:</label>
+                            <label class="special" for="year">Year:</label>
                             <div>
-                                <input type="release_date" id="release_date" name="release_date" value="<?= old('release_date', $book->release_date) ?>" required>
-                                <p><?= error('release_date') ?></p>
+                                <input type="year" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
+                                <p><?= error('year') ?></p>
                             </div>
                         </div>
                         <div class="input">

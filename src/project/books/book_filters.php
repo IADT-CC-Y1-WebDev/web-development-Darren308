@@ -1,4 +1,4 @@
-<!-- <form id="filters" class="filters">
+<form id="filters" class="filters">
             <div class="input">
                 <label class="filter-label" for="title_filter">Title:</label>
                 <div>
@@ -36,8 +36,8 @@
                 <div>
                     <select id="sort_by" name="sort_by">
                         <option value="title_asc">Title A-Z</option>
-                        <option value="release_date_desc">Year (newest first)</option>
-                        <option value="release_date_asc">Year (oldest first)</option>
+                        <option value="year_desc">Year (newest first)</option>
+                        <option value="year_asc">Year (oldest first)</option>
                     </select>
                 </div>
             </div>
@@ -50,18 +50,24 @@
             </div>
         </form>
 
-        <div id="game_cards" class="cards">
-            <?php foreach ($games as $game): ?>
+        <div id="book_cards" class="cards">
+            <?php foreach ($books as $book): ?>
                 <div class="card"
-                    data-title="<?= htmlspecialchars($game['title']) ?>"
-                    data-author="<?= htmlspecialchars($game['author']) ?>"
-                    data-format="<?= htmlspecialchars($game['format']) ?>"
-                    data-release_date="<?= $game['release_date'] ?>">
-                    <h3><?= htmlspecialchars($game['title']) ?></h3>
-                    <p><?= htmlspecialchars($game['author']) ?> · <?= htmlspecialchars($game['format']) ?> (<?= (int) $game['release_date'] ?>)</p>
+                    data-title        ="<?= htmlspecialchars($book['title']) ?>"
+                    data-author       ="<?= htmlspecialchars($book['author']) ?>"
+                    data-isbn         ="<?= htmlspecialchars($book['isbn']) ?>"
+                    data-format_ids   ="<?= htmlspecialchars($book['format_ids']) ?>"
+                    data-year ="<?= $book['year'] ?>">
+                    <h3><?= htmlspecialchars($book['title']) ?></h3>
+                    <p>
+                        <?= htmlspecialchars($book['title']) ?>
+                        <?= htmlspecialchars($book['author']) ?>
+                        <?= htmlspecialchars($book['isbn']) ?>
+                        <?= htmlspecialchars($book['format_ids']) ?>
+                        <?= (int) $book['year'] ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
         <script src="02-games-filters.js"></script>
     </body>
-</html> -->
+</html>

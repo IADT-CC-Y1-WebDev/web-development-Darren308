@@ -17,7 +17,7 @@
         $data = [
             'title'          => $_POST['title'] ?? null,
             'author'         => $_POST['author'] ?? null,
-            'release_date'   => $_POST['release_date'] ?? null,
+            'year'   => $_POST['year'] ?? null,
             'publisher_id'   => $_POST['publisher_id'] ?? null,
             'description'    => $_POST['description'] ?? null,
             'isbn'           => $_POST['isbn'] ?? null,
@@ -29,7 +29,7 @@
             'title'          => 'required|notempty|min:5|max:255',
             'author'         => 'required|notempty|min:5',
             'publisher_id'   => 'required|notempty|integer',
-            'release_date'   => 'required|notempty|minvalue:1900|maxvalue:' . $release_date,
+            'year'   => 'required|notempty|minvalue:1900|maxvalue:' . $year,
             'isbn'           => 'required|notempty|min:13|max:13',
             'format_ids'     => 'required|notempty|array|min:1|max:4',
             'description'    => 'required|notempty|min:10',
@@ -73,9 +73,10 @@
         }
         
         $book->title = $data['title'];
-        $book->release_date = $data['release_date'];
+        $book->year = $data['year'];
         $book->publisher_id = $data['publisher_id'];
         $book->description = $data['description'];
+
         if ($imageFilename) {
             $book->cover_filename = $imageFilename;
         }
@@ -91,9 +92,7 @@
 
         clearFormData();
         clearFormErrors();
-
         setFlashMessage('success', 'Book updated successfully.');
-
         redirect('book_view.php?id=' . $book->id);
     }
 
@@ -103,7 +102,6 @@
         }
 
         setFlashMessage('error', 'Error: ' . $e->getMessage());
-
         setFormData($data);
         setFormErrors($errors);
 

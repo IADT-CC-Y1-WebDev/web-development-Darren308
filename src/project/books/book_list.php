@@ -24,12 +24,14 @@
             return $books;
         }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <?php include './php/inc/head_content.php'; ?>
         <title>Books</title>
     </head>
+
     <body>
         <div class="container">
             <div class="width-12 header">
@@ -38,6 +40,7 @@
                     <a href="book_create.php">Add New Book</a>
                 </div>
             </div>
+
             <?php if (!empty($books)) { ?>
                 <div class="width-12 filters">
                     <form>
@@ -45,6 +48,7 @@
                             <label for="title_filter">Title:</label>
                             <input type="text" id="title_filter" name="title_filter">
                         </div>
+
                         <div>
                             <label for="publisher_filter">publisher:</label>
                             <select id="publisher_filter" name="publisher_filter">
@@ -54,6 +58,7 @@
                                 <?php } ?>
                             </select>
                         </div>
+
                         <div>
                             <button type="button" id="apply_filters">Apply Filters</button>
                             <button type="button" id="clear_filters">Clear Filters</button>
@@ -70,15 +75,15 @@
                         <div class="card">
                             <div class="top-content">
                                 <h2>Title: <?= h($book->title) ?></h2>
-                                <p>Year: <?= h($book->release_date) ?></p>
+                                <p>Year:   <?= h($book->year) ?></p>
                             </div>
+
                             <div class="bottom-content">
                                 <img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" />
                                 <div class="actions">
                                     <a href="book_view.php?id=<?= h($book->id) ?>">View</a>/ 
                                     <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>/ 
                                     <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a>
-                                    <a href="index.php">Back</a>
                                 </div>
                             </div>
                         </div>

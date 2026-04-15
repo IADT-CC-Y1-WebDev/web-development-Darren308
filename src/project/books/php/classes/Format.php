@@ -14,7 +14,7 @@
         }
 
         public static function findAll() {
-            $db = DB::getInstance()->getConnection();
+            $db   = DB::getInstance()->getConnection();
             $stmt = $db->prepare("SELECT * FROM formats ORDER BY name");
             $stmt->execute();
 
