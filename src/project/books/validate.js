@@ -3,8 +3,7 @@ let bookForm            = document.getElementById('book_form');
 let errorSummaryTop     = document.getElementById('error_summary_top');
 
 let titleInput          = document.getElementById('title');
-let authorInput         = document.getElementById('author');
-let publisher_id        = document.getElementById('publisher_id');
+let publisherInput      = document.getElementById('publisher_id');
 let yearInput           = document.getElementById('year');
 let isbn                = document.getElementById('isbn');
 let descriptionInput    = document.getElementById('description');
@@ -12,8 +11,7 @@ let formatIdsInput      = document.getElementsByName('format_ids[]');
 let cover_filenameInput = document.getElementById('cover_filename');
 
 let titleError          = document.getElementById('title_error');
-let authorError         = document.getElementById('author_error');
-let publisher_idError   = document.getElementById('publisher_id_error');
+let publisherError      = document.getElementById('publisher_id_error');
 let yearError           = document.getElementById('year_error');
 let isbnError           = document.getElementById('isbn_error');
 let descriptionError    = document.getElementById('description_error');
@@ -48,7 +46,6 @@ function showErrorSummaryTop() {
 
 function showFieldErrors() {
     titleError         .innerHTML = errors.title          || '';
-    authorError        .innerHTML = errors.author         || '';
     publisher_id       .innerHTMl = errors.publisher_id   || '';
     yearError          .innerHTML = errors.year           || '';
     isbnError          .innerHTML = errors.isbn           || '';
@@ -89,12 +86,12 @@ function onSubmitForm(evt) {
         addError('title', 'Title must be at most ' + titleMax + ' characters.');
     }
 
-    //author--
-    if (!isRequired(authorInput.value)) {
-        addError('author', 'Author is required.');
+    //publisher--
+    if (!isRequired(publisherInput.value)) {
+        addError('publsiher', 'Publisher is required.');
     }
-    else if (!isMinLength(authorInput.value, titleMin)) {
-        addError('author', 'Author must be at least ' + titleMin + ' characters.');
+    else if (!isMinLength(publisherInput.value, titleMin)) {
+        addError('publisher', 'publisher must be at least ' + titleMin + ' characters.');
     }
     //release date--
     if (!isRequired(yearInput.value)) {

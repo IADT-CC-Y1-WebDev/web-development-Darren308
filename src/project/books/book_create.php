@@ -13,7 +13,7 @@
     
     catch (PDOException $e) {
         setFlashMessage('error', 'Error: ' . $e->getMessage());
-        redirect('/index.php');
+        redirect('book_list.php');
     }
 ?>
 
@@ -41,9 +41,9 @@
                 </div>
 
                 <div class="input">
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" value="<?= h(old('author')) ?>" required>
-                    <p id="author_error" class="error"><?= error('author') ?></p>
+                    <label for="publisher_id">Publisher:</label>
+                    <input type="text" id="publisher_id" name="publisher_id" value="<?= h(old('publisher_id')) ?>" required>
+                    <p id="publisher_id_error" class="error"><?= error('publisher_id') ?></p>
                 </div>
 
                 <div class="input">
@@ -52,11 +52,6 @@
 
                     <p id="year_error" class="error"><?= error('year') ?></p>
                 </div>
-
-           
-
-                <!--  -->
-              
 
                 <div class="input">
                     <label for="isbn">ISBN:</label>
@@ -109,7 +104,7 @@
 
                 <div class="input">
                     <button id="submitBtn" class="button" type="submit">Create Book</button>
-                    <div class="button"><a href="index.php">Cancel</a></div>
+                    <div class="button"><a href="book_list.php">Cancel</a></div>
                 </div>
             </form>
             </div>

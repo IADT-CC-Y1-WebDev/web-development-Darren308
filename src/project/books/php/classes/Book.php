@@ -2,7 +2,6 @@
     class Book {
         public $id;
         public $title;
-        public $author;
         public $publisher_id;
         public $year;
         public $isbn;
@@ -16,9 +15,8 @@
             if (!empty($data)) {
                 $this->id             = $data['id']             ?? null;
                 $this->title          = $data['title']          ?? null;
-                $this->author         = $data['author']         ?? null;
                 $this->publisher_id   = $data['publisher_id']   ?? null;
-                $this->year   = $data['year']   ?? null;
+                $this->year           = $data['year']           ?? null;
                 $this->isbn           = $data['isbn']           ?? null;
                 $this->description    = $data['description']    ?? null;
                 $this->cover_filename = $data['cover_filename'] ?? null;
@@ -53,9 +51,8 @@
             if ($this->id) {
                 $stmt = $this->db->prepare("UPDATE books SET 
                     title          = :title,
-                    author         = :author,
                     publisher_id   = :publisher_id,
-                    year   = :year,
+                    year           = :year,
                     isbn           = :isbn,
                     description    = :description,
                     cover_filename = :cover_filename,
@@ -65,9 +62,8 @@
                 $params = [
                     'id'             => $this->id,
                     'title'          => $this->title,
-                    'author'         => $this->author,
                     'publisher_id'   => $this->publisher_id,
-                    'year'   => $this->year,
+                    'year'           => $this->year,
                     'isbn'           => $this->isbn,
                     'description'    => $this->description,
                     'cover_filename' => $this->cover_filename,
@@ -75,16 +71,15 @@
 
             } 
             else {
-                $stmt = $this->db->prepare("INSERT INTO books (title, author, publisher_id, year, isbn, description, cover_filename)
-                    VALUES (:title, :author, :publisher_id, :year, :isbn, :description, :cover_filename)
+                $stmt = $this->db->prepare("INSERT INTO books (title, publisher_id, year, isbn, description, cover_filename)
+                    VALUES (:title, :publisher_id, :year, :isbn, :description, :cover_filename)
                 ");
 
                 $params = [
                     'id'             => $this->id,
                     'title'          => $this->title,
-                    'author'         => $this->author,
                     'publisher_id'   => $this->publisher_id,
-                    'year'   => $this->year,
+                    'year'           => $this->year,
                     'isbn'           => $this->isbn,
                     'description'    => $this->description,
                     'cover_filename' => $this->cover_filename,

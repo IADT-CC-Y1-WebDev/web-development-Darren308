@@ -14,13 +14,12 @@
             throw new Exception('Invalid request method.');
         }
         $data = [
-            'title'          => $_POST['title'] ?? null,
-            'author'         => $_POST['author'] ?? null,
-            'publisher_id'   => $_POST['publisher_id'] ?? null,
-            'year'   => $_POST['year'] ?? null,
-            'isbn'           => $_POST['isbn'] ?? null,
-            'description'    => $_POST['description'] ?? null,
-            'format_ids'     => $_POST['format_ids'] ?? "",
+            'title'          => $_POST ['title'         ] ?? null,
+            'publisher_id'   => $_POST ['publisher_id'  ] ?? null,
+            'year'           => $_POST ['year'          ] ?? null,
+            'isbn'           => $_POST ['isbn'          ] ?? null,
+            'description'    => $_POST ['description'   ] ? null,
+            'format_ids'     => $_POST ['format_ids'    ] ?? "",
             'cover_filename' => $_FILES['cover_filename'] ?? null
         ];
 
@@ -28,9 +27,8 @@
 
         $rules = [
             'title'          => 'required|notempty|min:5|max:255',
-            'author'         => 'required|notempty|min:5',
-            'publisher_id'   => 'required|notempty|integer',
-            'year'   => 'required|notempty|minvalue:1900|maxvalue:' . $year,
+            'publisher_id'   => 'required|notempty|min:5|',
+            'year'           => 'required|notempty|minvalue:1900|maxvalue:' . $year,
             'isbn'           => 'required|notempty|min:13|max:13',
             'format_ids'     => 'required|notempty|array|min:1|max:4',
             'description'    => 'required|notempty|min:10',
@@ -56,10 +54,9 @@
 
         $book = new Book();
         $book->title          = $data['title'];
-        $book->year   = $data['year'];
+        $book->year           = $data['year'];
         $book->publisher_id   = $data['publisher_id'];
         $book->description    = $data['description'];
-        $book->author         = $data['author'];
         $book->isbn           = $data['isbn'];
         $book->format_ids     = $data['format_ids'];
         $book->cover_filename = $coverFilename;

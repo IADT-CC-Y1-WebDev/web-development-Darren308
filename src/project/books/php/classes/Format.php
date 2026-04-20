@@ -38,14 +38,15 @@
 
         public static function findByBook($bookId) {
             $db = DB::getInstance()->getConnection();
-            $stmt = $db->prepare("SELECT f.* FROM formats f
-                INNER JOIN book_format bf ON f.id = bf.format_ids
+            $stmt = $db->prepare("
+                SELECT f.* FROM formats f
+                INNER JOIN book_format bf ON f.id = bf.format_id
                 WHERE bf.book_id = :book_id
                 ORDER BY f.name
             ");
             $stmt->execute(['book_id' => $bookId]);
 
-            $format = [];
+            $formats = [];
             while ($row = $stmt->fetch()) {
                 $formats[] = new Format($row);
             }

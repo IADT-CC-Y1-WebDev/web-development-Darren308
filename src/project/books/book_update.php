@@ -16,8 +16,7 @@
 
         $data = [
             'title'          => $_POST['title'] ?? null,
-            'author'         => $_POST['author'] ?? null,
-            'year'   => $_POST['year'] ?? null,
+            'year'           => $_POST['year'] ?? null,
             'publisher_id'   => $_POST['publisher_id'] ?? null,
             'description'    => $_POST['description'] ?? null,
             'isbn'           => $_POST['isbn'] ?? null,
@@ -27,9 +26,8 @@
 
         $rules = [
             'title'          => 'required|notempty|min:5|max:255',
-            'author'         => 'required|notempty|min:5',
             'publisher_id'   => 'required|notempty|integer',
-            'year'   => 'required|notempty|minvalue:1900|maxvalue:' . $year,
+            'year'           => 'required|notempty|minvalue:1900|maxvalue:' . $year,
             'isbn'           => 'required|notempty|min:13|max:13',
             'format_ids'     => 'required|notempty|array|min:1|max:4',
             'description'    => 'required|notempty|min:10',
@@ -51,9 +49,9 @@
             throw new Exception('Book not found.');
         }
 
-        $author = Author::findById($data['author_id']);
-        if (!$author) {
-            throw new Exception('Selected author does not exist.');
+        $publisher = Publsiher::findById($data['publisher_id']);
+        if (!$publisher) {
+            throw new Exception('Selected publsiher does not exist.');
         }
 
         foreach ($data['format_ids'] as $formatId) {
@@ -109,7 +107,7 @@
             redirect('book_edit.php?id=' . $data['id']);
         }
         else {
-            redirect('index.php');
+            redirect('book_list.php');
         }
     }
 ?>

@@ -6,23 +6,11 @@
 
     try {
         $books = Book::findAll();
-        
-        } 
+        $publishers = Publisher::findAll();
+    } 
     catch (PDOException $e) {
         die("<p>PDO Exception: " . $e->getMessage() . "</p>");
     }
-
-    function findAll() {
-            $db = DB::getInstance()->getConnection();
-            $stmt = $db->prepare("SELECT * FROM books ORDER BY title");
-            $stmt->execute();
-
-            $books = [];
-            while ($row = $stmt->fetch()) {
-                $books[] = new Book($row);
-            }
-            return $books;
-        }
 ?>
 
 <!DOCTYPE html>
@@ -43,18 +31,28 @@
 
             <?php if (!empty($books)) { ?>
                 <div class="width-12 filters">
-                    <form>
+                    <form id="form-filters">
                         <div>
                             <label for="title_filter">Title:</label>
                             <input type="text" id="title_filter" name="title_filter">
                         </div>
 
                         <div>
-                            <label for="publisher_filter">publisher:</label>
+                            <label for="publisher_filter">Publisher:</label>
                             <select id="publisher_filter" name="publisher_filter">
                                 <option value="">All publishers</option>
-                                <?php foreach ($books as $book) { ?>
-                                <option value="<?= h($book->id) ?>"><?= h($book->name) ?></option>
+                                <?php foreach ($publishers as $p) { ?>
+                                <option value="<?= h($p->id) ?>"><?= h($p->name) ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="format_ids_filter"></label>
+                            <select name="format_ids_filter" id="format_ids_filter">
+                                <option value="">All Formats</option>
+                                <?php foreach ($formats as $f) { ?>
+                                    <option value="<?= h($f->id) ?>"><?= h($f->name)?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -71,8 +69,20 @@
             <?php } else { ?>
                 
                 <div class="width-12 cards">
-                    <?php foreach ($books as $book) { ?>
-                        <div class="card">
+                    <?php 
+                    foreach ($books as $book) {
+                        $formats = Format::findByBook($book->id);
+                        $formatIds = [];
+                        foreach ($formats as $f) {
+                            $formatIds[] = $f->id;
+                        }
+                        $formatIdsStr = implode(" ", $formatIds);
+                    ?>
+                        <div class="card"
+                            data-title="<?= htmlspecialchars($book->title) ?>"
+                            data-publisher="<?= htmlspecialchars($book->publisher_id) ?>"
+                            data-format="<?= htmlspecialchars($formatIdsStr) ?>"
+                        >
                             <div class="top-content">
                                 <h2>Title: <?= h($book->title) ?></h2>
                                 <p>Year:   <?= h($book->year) ?></p>
@@ -91,5 +101,6 @@
                 </div>
             <?php } ?>
         </div>
+        <script src="book_filters.js"></script>
     </body>
 </html>

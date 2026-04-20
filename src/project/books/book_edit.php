@@ -29,13 +29,13 @@
             $bookFormatsIds[] = $format->id;
         }
 
-        $publisher = Publisher::findAll();
+        $publishers = Publisher::findAll();
         $formats = Format::findAll();
     }
 
     catch (PDOException $e) {
         setFlashMessage('error', 'Error: ' . $e->getMessage());
-        redirect('/index.php');
+        redirect('book_list.php');
     }
 
 ?>
@@ -76,8 +76,8 @@
                             <label class="special" for="publisher_id">Publisher:</label>
                             <div>
                                 <select id="publisher_id" name="publisher_id" required>
-                                    <?php foreach ($publisher as $pub) { ?>
-                                        <option value="<?= h($pub->id) ?>" <?= chosen('publisher_id', $pub->id, $book->pub_id) ? "selected" : "" ?>>
+                                    <?php foreach ($publishers as $pub) { ?>
+                                        <option value="<?= h($pub->id) ?>" <?= chosen('publisher_id', $pub->id, $book->publisher_id) ? "selected" : "" ?>>
                                             <?= h($pub->name) ?>
                                         </option>
                                     <?php } ?>
@@ -119,7 +119,7 @@
                         
                         <div class="input">
                             <button class="button" type="submit">Update Book</button>
-                            <div class="button"><a href="index.php">Cancel</a></div>
+                            <div class="button"><a href="book_list.php">Cancel</a></div>
                         </div>
                     </form>
                 </div>

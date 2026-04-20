@@ -48,7 +48,7 @@
 
         setFlashMessage('success', 'Book deleted successfully.');
 
-        redirect('index.php');
+        redirect('book_list.php');
     }
 
     catch (Exception $e) {
@@ -61,7 +61,7 @@
             redirect('book_view.php?id=' . $data['id']);
         }
         else {
-            redirect('index.php');
+            redirect('book_list.php');
         }
     }
 ?>
