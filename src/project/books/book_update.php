@@ -15,18 +15,21 @@
         }
 
         $data = [
-            'title'          => $_POST['title'] ?? null,
-            'year'           => $_POST['year'] ?? null,
-            'publisher_id'   => $_POST['publisher_id'] ?? null,
-            'description'    => $_POST['description'] ?? null,
-            'isbn'           => $_POST['isbn'] ?? null,
-            'format_ids'     => $_POST['format_ids'] ?? "", 
+            'id'             => $_POST ['id'            ] ?? null,
+            'author'         => $_POST []
+            'title'          => $_POST ['title'         ] ?? null,
+            'year'           => $_POST ['year'          ] ?? null,
+            'publisher_id'   => $_POST ['publisher_id'  ] ?? null,
+            'description'    => $_POST ['description'   ] ?? null,
+            'isbn'           => $_POST ['isbn'          ] ?? null,
+            'format_ids'     => $_POST ['format_ids'    ] ?? "", 
             'cover_filename' => $_FILES['cover_filename'] ?? null
         ];
 
         $rules = [
+            'id'             => 'required|notempty|integer',
             'title'          => 'required|notempty|min:5|max:255',
-            'publisher_id'   => 'required|notempty|integer',
+            'publisher_id'   => 'required|notempty',
             'year'           => 'required|notempty|minvalue:1900|maxvalue:' . $year,
             'isbn'           => 'required|notempty|min:13|max:13',
             'format_ids'     => 'required|notempty|array|min:1|max:4',
@@ -40,7 +43,6 @@
             foreach ($validator->errors() as $field => $fieldErrors) {
                 $errors[$field] = $fieldErrors[0];
             }
-
             throw new Exception('Validation failed.');
         }
 
@@ -49,9 +51,9 @@
             throw new Exception('Book not found.');
         }
 
-        $publisher = Publsiher::findById($data['publisher_id']);
+        $publisher = Publisher::findById($data['publisher_id']);
         if (!$publisher) {
-            throw new Exception('Selected publsiher does not exist.');
+            throw new Exception('Selected publisher does not exist.');
         }
 
         foreach ($data['format_ids'] as $formatId) {
@@ -70,10 +72,12 @@
             }
         }
         
-        $book->title = $data['title'];
-        $book->year = $data['year'];
-        $book->publisher_id = $data['publisher_id'];
-        $book->description = $data['description'];
+        $book->title          = $data['title'         ];
+        $book->isbn           = $data['isbn'          ];
+        $book->year           = $data['year'          ];
+        $book->publisher_id   = $data['publisher_id'  ];
+        $book->description    = $data['description'   ];
+        $book->cover_filename = $data['cover_filename'];
 
         if ($imageFilename) {
             $book->cover_filename = $imageFilename;
@@ -83,14 +87,14 @@
 
         BookFormat::deleteByBook($book->id);
         if (!empty($data['format_ids']) && is_array($data['format_ids'])) {
-            foreach ($data['format_ids'] as $formatId) {
-                BookFormat::create($book->id, $formatId);
+            foreach ($data['format_ids'] as $formatIds) {
+                BookFormat::create($book->id, $formatIds);
             }
         }
 
         clearFormData();
         clearFormErrors();
-        setFlashMessage('success', 'Book updated successfully.');
+        setFlashMessage('Success', 'Book updated successfully.');
         redirect('book_view.php?id=' . $book->id);
     }
 

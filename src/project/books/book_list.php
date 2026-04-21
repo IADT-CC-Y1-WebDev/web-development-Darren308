@@ -7,6 +7,7 @@
     try {
         $books = Book::findAll();
         $publishers = Publisher::findAll();
+        $formats  = Format::findAll();
     } 
     catch (PDOException $e) {
         die("<p>PDO Exception: " . $e->getMessage() . "</p>");
@@ -38,6 +39,16 @@
                         </div>
 
                         <div>
+                            <label for="author_filter">Author:</label>
+                            <select id="author_filter" name="author_filter">
+                                <option value="">All authors</option>
+                                <?php foreach ($authors as $a) { ?>
+                                <option value="<?= h($a->id) ?>"><?= h($a->name) ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+
+                        <div>
                             <label for="publisher_filter">Publisher:</label>
                             <select id="publisher_filter" name="publisher_filter">
                                 <option value="">All publishers</option>
@@ -48,11 +59,11 @@
                         </div>
 
                         <div>
-                            <label for="format_ids_filter"></label>
-                            <select name="format_ids_filter" id="format_ids_filter">
+                            <label for="format_filter">Formats:</label>
+                            <select name="format_filter" id="format_filter">
                                 <option value="">All Formats</option>
                                 <?php foreach ($formats as $f) { ?>
-                                    <option value="<?= h($f->id) ?>"><?= h($f->name)?></option>
+                                <option value="<?= h($f->id) ?>"><?= h($f->name)?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -81,11 +92,11 @@
                         <div class="card"
                             data-title="<?= htmlspecialchars($book->title) ?>"
                             data-publisher="<?= htmlspecialchars($book->publisher_id) ?>"
-                            data-format="<?= htmlspecialchars($formatIdsStr) ?>"
+                            data-format_ids="<?= htmlspecialchars($formatIdsStr) ?>"
                         >
                             <div class="top-content">
-                                <h2>Title: <?= h($book->title) ?></h2>
-                                <p>Year:   <?= h($book->year) ?></p>
+                                <h2><?= h($book->title) ?></h2>
+                                <p>Year: <?= h($book->year) ?></p>
                             </div>
 
                             <div class="bottom-content">
@@ -101,6 +112,6 @@
                 </div>
             <?php } ?>
         </div>
-        <script src="book_filters.js"></script>
+        <script src="./js/book_filters.js"></script>
     </body>
 </html>

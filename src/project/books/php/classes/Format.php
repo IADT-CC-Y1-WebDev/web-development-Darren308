@@ -1,7 +1,7 @@
 <?php
     class Format {
-        public $id;
-        public $name;
+        public  $id;
+        public  $name;
         private $db;
 
         public function __construct($data = []) {

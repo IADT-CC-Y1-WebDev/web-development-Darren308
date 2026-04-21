@@ -4,7 +4,7 @@
 
         public function __construct($targetDir = null) {
             if ($targetDir === null) {
-                $this->targetDir = dirname(__DIR__) . '../images/';
+                $this->targetDir = dirname(__DIR__) . '/../images/';
             } else {
                 $this->targetDir = $targetDir;
             }

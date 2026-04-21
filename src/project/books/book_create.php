@@ -26,8 +26,7 @@
 
         <body>
             <?php require 'php/inc/flash_message.php'; ?>
-
-            <div width-12>
+            <div class="width-12">
 
             <h1>Add New Book</h1>
 
@@ -41,15 +40,36 @@
                 </div>
 
                 <div class="input">
+                    <label for="author_id">Author:</label>
+                    <select id="author_id" name="author_id">
+                        <option value="">-- Select Author --</option>
+                                
+                        <?php foreach ($authors as $a){ ?>
+                            <option value="<?= h($a->id) ?>" <?= chosen('author_id', $a->id) ? "selected" : "" ?> required>
+                                <?= h($a->name) ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                    <p id="author_error" class="error"><?= error('author_id') ?></p>
+                </div>
+
+                <div class="input">
                     <label for="publisher_id">Publisher:</label>
-                    <input type="text" id="publisher_id" name="publisher_id" value="<?= h(old('publisher_id')) ?>" required>
-                    <p id="publisher_id_error" class="error"><?= error('publisher_id') ?></p>
+                    <select id="publisher_id" name="publisher_id">
+                        <option value="">-- Select Publisher --</option>
+                                
+                        <?php foreach ($publishers as $pub){ ?>
+                            <option value="<?= h($pub->id) ?>" <?= chosen('publisher_id', $pub->id) ? "selected" : "" ?> required>
+                                <?= h($pub->name) ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                    <p id="publisher_error" class="error"><?= error('publisher_id') ?></p>
                 </div>
 
                 <div class="input">
                     <label for="year">Year:</label>
                     <input type="text" id="year" name="year" value="<?= h(old('year')) ?>" required>
-
                     <p id="year_error" class="error"><?= error('year') ?></p>
                 </div>
 
@@ -70,36 +90,19 @@
                             </div>
                         <?php } ?>
                     </div>
-                    <p id="format_ids_error" class="error"><?= error('format_ids') ?></p>
+                    <p id="format_error" class="error"><?= error('format_ids') ?></p>
                 </div>
 
                 <div class="input">
                     <label for="description">Description:</label>
                     <textarea id="description" name="description" rows="5"><?= h(old('description')) ?></textarea>
-
                     <p id="description_error" class="error"><?= error('description') ?></p>
                 </div>
 
                 <div class="input">
                     <label for="cover_filename">Book Cover Image (max 2MB):</label>
                     <input type="file" id="cover_filename" name="cover_filename" accept="image/*" required>
-
                     <p id="cover_filename_error" class="error"><?= error('cover_filename') ?></p>
-                </div>
-
-                <div class="input">
-                    <label for="publisher_id">Publisher:</label>
-                    <select id="publisher_id" name="publisher_id">
-                        <option value="">-- Select Publisher --</option>
-                                
-                        <?php foreach ($publisher as $pub){ ?>
-                            <option value="<?= h($pub->id) ?>" <?= chosen('publisher_id', $pub->id) ? "selected" : "" ?> required>
-                                <?= h($pub->name) ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-
-                    <p id="publisher_id_error" class="error"><?= error('publisher_id') ?></p>
                 </div>
 
                 <div class="input">
@@ -108,7 +111,7 @@
                 </div>
             </form>
             </div>
-            <script src="validate.js"></script>
+            <script src="./js/validate.js"></script>
         </body>
     </html>
     

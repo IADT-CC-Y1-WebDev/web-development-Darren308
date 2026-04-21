@@ -45,19 +45,23 @@
             <?php include 'php/inc/head_content.php'; ?>
             <title>Edit Book</title>
         </head>
+
         <body>
             <div class="container">
                 <div class="width-12">
                     <?php require 'php/inc/flash_message.php'; ?>
                 </div>
+
                 <div class="width-12">
                     <h1>Edit Book</h1>
                 </div>
+
                 <div class="width-12">
                     <form action="book_update.php" method="POST" enctype="multipart/form-data">
                         <div class="input">
                             <input type="hidden" name="id" value="<?= h($book->id) ?>">
                         </div>
+
                         <div class="input">
                             <label class="special" for="title">Title:</label>
                             <div>
@@ -65,13 +69,21 @@
                                 <p><?= error('title') ?></p>
                             </div>
                         </div>
+
                         <div class="input">
-                            <label class="special" for="year">Year:</label>
+                            <label class="special" for="author_id">Author:</label>
                             <div>
-                                <input type="year" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
-                                <p><?= error('year') ?></p>
+                                <select id="author_id" name="author_id" required>
+                                    <?php foreach ($authors as $a) { ?>
+                                        <option value="<?= h($a->id) ?>" <?= chosen('author_id', $a->id, $book->author_id) ? "selected" : "" ?>>
+                                            <?= h($a->name) ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                                <p><?= error('author_id') ?></p>
                             </div>
                         </div>
+
                         <div class="input">
                             <label class="special" for="publisher_id">Publisher:</label>
                             <div>
@@ -85,6 +97,40 @@
                                 <p><?= error('publisher_id') ?></p>
                             </div>
                         </div>
+
+                        <div class="input">
+                            <label class="special" for="year">Year:</label>
+                            <div>
+                                <input type="year" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
+                                <p><?= error('year') ?></p>
+                            </div>
+                        </div>
+
+                        <div class="input">
+                            <label class="special" for="isbn">ISBN:</label>
+                            <div>
+                                <input type="isbn" id="isbn" name="isbn" value="<?= old('isbn', $book->isbn) ?>" required>
+                                <p><?= error('isbn') ?></p>
+                            </div>
+                        </div>
+
+                        <div class="input">
+                            <label class="special">Formats:</label>
+                            <div>
+                                <?php foreach ($formats as $f) { ?>
+                                    <div>
+                                        <input type="checkbox" 
+                                            id="format_ids<?= h($f->id) ?>" 
+                                            name="format_ids[]" 
+                                            value="<?= h($f->id) ?>"
+                                            <?= chosen('format_ids', $f->id, $bookFormatsIds) ? "checked" : "" ?>>
+                                        <label for="format_ids<?= h($f->id) ?>"><?= h($f->name) ?></label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                            <p><?= error('format_ids') ?></p>
+                        </div>
+
                         <div class="input">
                             <label class="special" for="description">Description:</label>
                             <div>
@@ -92,22 +138,7 @@
                                 <p><?= error('description') ?></p>
                             </div>
                         </div>
-                        <div class="input">
-                            <label class="special">Formats:</label>
-                            <div>
-                                <?php foreach ($formats as $format) { ?>
-                                    <div>
-                                        <input type="checkbox" 
-                                            id="format_ids<?= h($format->id) ?>" 
-                                            name="format_ids[]" 
-                                            value="<?= h($format->id) ?>"
-                                            <?= chosen('format_ids', $format->id, $bookFormatsIds) ? "checked" : "" ?>>
-                                        <label for="format_ids<?= h($format->id) ?>"><?= h($format->name) ?></label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <p><?= error('format_ids') ?></p>
-                        </div>
+
                         <div><img src="images/<?= $book->cover_filename ?>" /></div>
                         <div class="input">
                             <label class="special" for="cover_filename">Image (optional):</label>
@@ -126,6 +157,7 @@
             </div>
         </body>
     </html>
+
 <?php
     clearFormData();
     clearFormErrors();
