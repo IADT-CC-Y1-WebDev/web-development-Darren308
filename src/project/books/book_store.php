@@ -13,9 +13,10 @@
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             throw new Exception('Invalid request method.');
         }
+
         $data = [
             'title'          => $_POST ['title'         ] ?? null,
-            'author_id'      => $_POST ['author_id'     ] ?? null,
+            'author'         => $_POST ['author'        ] ?? null,
             'publisher_id'   => $_POST ['publisher_id'  ] ?? null,
             'year'           => $_POST ['year'          ] ?? null,
             'isbn'           => $_POST ['isbn'          ] ?? null,
@@ -24,12 +25,12 @@
             'cover_filename' => $_FILES['cover_filename'] ?? null
         ];
 
-        $year = date('Y');
-
+        
+        $year = date("Y");
         $rules = [
             'title'          => 'required|notempty|min:5|max:255',
             'publisher_id'   => 'required|notempty',
-            'author_id'      => 'required|notempty',
+            'author'         => 'required|notempty|min:5|max:255',
             'year'           => 'required|notempty|minvalue:1900|maxvalue:' . $year,
             'isbn'           => 'required|notempty|min:13|max:13',
             'format_ids'     => 'required|notempty|array|min:1|max:4',

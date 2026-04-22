@@ -45,15 +45,15 @@ function sortCards(cards, sortby){
 }
 
 function cardMatches(crd, fltr){
-    let title           = crd.dataset.title.toLowerCase();
-    let author          = crd.dataset.author;
-    let publisher       = crd.dataset.publisher;
+    let title           = crd.dataset.title .toLowerCase();
+    let author          = crd.dataset.author.toLowerCase();
+    let publisher_id    = crd.dataset.publisher;
     let format_ids      = crd.dataset.format_ids;
 
-    let matchTitle      = fltr.titleFilter      === '' || title     .includes(fltr.titleFilter);
-    let matchAuthor     = fltr.authorFilter     === '' || author    === fltr.authorFilter;
-    let matchPublisher  = fltr.publisherFilter  === '' || publisher === fltr.publisherFilter;
-    let matchFormat_ids = fltr.format_idsFilter === '' || format_ids.includes(fltr.format_idsFilter);
+    let matchTitle      = fltr.titleFilter      === '' || title        .includes(fltr.titleFilter);
+    let matchAuthor     = fltr.authorFilter     === '' || author       .includes(fltr.authorFilter);
+    let matchPublisher  = fltr.publisherFilter  === '' || publisher_id ===       fltr.publisherFilter;
+    let matchFormat_ids = fltr.format_idsFilter === '' || format_ids   .includes(fltr.format_idsFilter);
 
     return matchTitle && matchPublisher && matchFormat_ids && matchAuthor;
 }
@@ -66,7 +66,7 @@ function getFilters(){
     // const sortE1      = form.elements['sort_by'];
 
     let titleFilter      = (titleE1.value      ||'').trim().toLowerCase();
-    let authorFilter     = (authorE1.value     ||'');
+    let authorFilter     = (authorE1.value     ||'').trim().toLowerCase();
     let publisherFilter  = (publisherE1.value  ||'');
     let format_idsFilter = (format_idsE1.value ||'');
     // let sortby        =  sortE1.value       ||'title_asc';

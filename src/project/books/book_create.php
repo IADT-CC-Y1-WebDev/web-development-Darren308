@@ -40,17 +40,9 @@
                 </div>
 
                 <div class="input">
-                    <label for="author_id">Author:</label>
-                    <select id="author_id" name="author_id">
-                        <option value="">-- Select Author --</option>
-                                
-                        <?php foreach ($authors as $a){ ?>
-                            <option value="<?= h($a->id) ?>" <?= chosen('author_id', $a->id) ? "selected" : "" ?> required>
-                                <?= h($a->name) ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                    <p id="author_error" class="error"><?= error('author_id') ?></p>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" value="<?= h(old('author')) ?>" required>
+                    <p id="author_error" class="error"><?= error('author') ?></p>
                 </div>
 
                 <div class="input">
@@ -58,9 +50,9 @@
                     <select id="publisher_id" name="publisher_id">
                         <option value="">-- Select Publisher --</option>
                                 
-                        <?php foreach ($publishers as $pub){ ?>
-                            <option value="<?= h($pub->id) ?>" <?= chosen('publisher_id', $pub->id) ? "selected" : "" ?> required>
-                                <?= h($pub->name) ?>
+                        <?php foreach ($publisher as $p){ ?>
+                            <option value="<?= h($p->id) ?>" <?= chosen('publisher_id', $p->id) ? "selected" : "" ?> required>
+                                <?= h($p->name) ?>
                             </option>
                         <?php } ?>
                     </select>

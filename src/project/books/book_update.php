@@ -4,11 +4,12 @@
     require_once 'php/lib/forms.php';
     require_once 'php/lib/utils.php';
 
+    $data = [];
+    $errors = [];
     startSession();
 
     try {
-        $data = [];
-        $errors = [];
+        
         
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             throw new Exception('Invalid request method.');
@@ -16,7 +17,7 @@
 
         $data = [
             'id'             => $_POST ['id'            ] ?? null,
-            'author'         => $_POST []
+            'author'         => $_POST ['author'        ] ?? null,
             'title'          => $_POST ['title'         ] ?? null,
             'year'           => $_POST ['year'          ] ?? null,
             'publisher_id'   => $_POST ['publisher_id'  ] ?? null,
@@ -26,9 +27,12 @@
             'cover_filename' => $_FILES['cover_filename'] ?? null
         ];
 
+        $year = date('Y');
+
         $rules = [
             'id'             => 'required|notempty|integer',
             'title'          => 'required|notempty|min:5|max:255',
+            'author'         => 'required|notempty|min:5|max:255',
             'publisher_id'   => 'required|notempty',
             'year'           => 'required|notempty|minvalue:1900|maxvalue:' . $year,
             'isbn'           => 'required|notempty|min:13|max:13',
@@ -73,9 +77,11 @@
         }
         
         $book->title          = $data['title'         ];
-        $book->isbn           = $data['isbn'          ];
-        $book->year           = $data['year'          ];
+        $book->author         = $data['author'        ];
         $book->publisher_id   = $data['publisher_id'  ];
+        $book->year           = $data['year'          ];
+        $book->isbn           = $data['isbn'          ];
+        // $book->format_ids     = $data['format_ids'    ];
         $book->description    = $data['description'   ];
         $book->cover_filename = $data['cover_filename'];
 

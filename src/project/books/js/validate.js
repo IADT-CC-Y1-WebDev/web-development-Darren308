@@ -6,13 +6,13 @@ let titleInput          = document.getElementById   ('title'               );
 let authorInput         = document.getElementById   ('author'              );
 let publisherInput      = document.getElementById   ('publisher_id'        );
 let yearInput           = document.getElementById   ('year'                );
-let isbn                = document.getElementById   ('isbn'                );
+let isbnInput           = document.getElementById   ('isbn'                );
 let descriptionInput    = document.getElementById   ('description'         );
 let formatIdsInput      = document.getElementsByName('format_ids[]'        );
 let cover_filenameInput = document.getElementById   ('cover_filename'      );
 
 let titleError          = document.getElementById   ('title_error'         );
-let authorError         = document.getElementById   ('author_id'           )
+let authorError         = document.getElementById   ('author_error'        );
 let publisherError      = document.getElementById   ('publisher_error'     );
 let yearError           = document.getElementById   ('year_error'          );
 let isbnError           = document.getElementById   ('isbn_error'          );
@@ -89,9 +89,17 @@ function onSubmitForm(evt) {
         addError('title', 'Title must be at most ' + titleMax + ' characters.');
     }
 
+    //author
     if (!isRequired(authorInput.value)) {
-        addError('author_id', 'Author is required.');
+        addError('author', 'Author is required.');
     }
+    else if(!isMinLength(authorInput.value,titleMin)) {
+        addError('author', 'Author must be at least ' + titleMin + ' characters.');
+    }
+    else if (!isMaxLength(authorInput.value, titleMax)) {
+        addError('author', 'Author must be at most ' + titleMax + ' characters.');
+    }
+
     //publisher--
     if (!isRequired(publisherInput.value)) {
         addError('publisher_id', 'Publisher is required.');
@@ -118,6 +126,10 @@ function onSubmitForm(evt) {
                 addError('year', 'Please enter year less than or equal to ' + thisYear + '.');
             }
         }
+    }
+
+    if (!isRequired(isbnInput.value)) {
+        addError('isbn', 'ISBN is required.');
     }
 
     //description--

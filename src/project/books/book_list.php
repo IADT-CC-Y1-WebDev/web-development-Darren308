@@ -33,6 +33,7 @@
             <?php if (!empty($books)) { ?>
                 <div class="width-12 filters">
                     <form id="form-filters">
+
                         <div>
                             <label for="title_filter">Title:</label>
                             <input type="text" id="title_filter" name="title_filter">
@@ -40,12 +41,7 @@
 
                         <div>
                             <label for="author_filter">Author:</label>
-                            <select id="author_filter" name="author_filter">
-                                <option value="">All authors</option>
-                                <?php foreach ($authors as $a) { ?>
-                                <option value="<?= h($a->id) ?>"><?= h($a->name) ?></option>
-                                <?php } ?>
-                            </select>
+                            <input type="text" id="author_filter" name="author_filter">
                         </div>
 
                         <div>
@@ -90,8 +86,9 @@
                         $formatIdsStr = implode(" ", $formatIds);
                     ?>
                         <div class="card"
-                            data-title="<?= htmlspecialchars($book->title) ?>"
-                            data-publisher="<?= htmlspecialchars($book->publisher_id) ?>"
+                            data-title     ="<?= htmlspecialchars($book->title) ?>"
+                            data-author    ="<?= htmlspecialchars($book->author) ?>"
+                            data-publisher ="<?= htmlspecialchars($book->publisher_id) ?>"
                             data-format_ids="<?= htmlspecialchars($formatIdsStr) ?>"
                         >
                             <div class="top-content">

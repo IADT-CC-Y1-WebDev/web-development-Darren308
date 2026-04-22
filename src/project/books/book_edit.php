@@ -71,16 +71,10 @@
                         </div>
 
                         <div class="input">
-                            <label class="special" for="author_id">Author:</label>
+                            <label class="special" for="author">Author:</label>
                             <div>
-                                <select id="author_id" name="author_id" required>
-                                    <?php foreach ($authors as $a) { ?>
-                                        <option value="<?= h($a->id) ?>" <?= chosen('author_id', $a->id, $book->author_id) ? "selected" : "" ?>>
-                                            <?= h($a->name) ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                                <p><?= error('author_id') ?></p>
+                                <input type="text" id="author" name="author" value="<?= old('author', $book->author) ?>" required>
+                                <p><?= error('author') ?></p>
                             </div>
                         </div>
 
