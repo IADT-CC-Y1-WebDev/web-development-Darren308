@@ -63,20 +63,17 @@ function getFilters(){
     const authorE1       = form.elements['author_filter'   ];
     const publisherE1    = form.elements['publisher_filter'];
     const format_idsE1   = form.elements['format_filter'   ];
-    // const sortE1      = form.elements['sort_by'];
 
     let titleFilter      = (titleE1.value      ||'').trim().toLowerCase();
     let authorFilter     = (authorE1.value     ||'').trim().toLowerCase();
     let publisherFilter  = (publisherE1.value  ||'');
     let format_idsFilter = (format_idsE1.value ||'');
-    // let sortby        =  sortE1.value       ||'title_asc';
 
     return {
         titleFilter,
         authorFilter,
         publisherFilter,
         format_idsFilter,
-        // sortby
     };
 }
 

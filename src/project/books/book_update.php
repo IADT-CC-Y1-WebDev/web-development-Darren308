@@ -10,7 +10,6 @@
 
     try {
         
-        
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             throw new Exception('Invalid request method.');
         }
@@ -81,7 +80,6 @@
         $book->publisher_id   = $data['publisher_id'  ];
         $book->year           = $data['year'          ];
         $book->isbn           = $data['isbn'          ];
-        // $book->format_ids     = $data['format_ids'    ];
         $book->description    = $data['description'   ];
         $book->cover_filename = $data['cover_filename'];
 

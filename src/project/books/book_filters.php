@@ -83,6 +83,7 @@
                 </div>
             <?php endforeach; ?>
         </div>
+        
         <script src="./js/book_filters.js"></script>
     </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
 
 class BookFormat {
-    // Check if a relationship exists
     public static function exists($bookId, $formatId) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
@@ -18,9 +17,7 @@ class BookFormat {
         return $row['count'] > 0;
     }
 
-    // Create a new game-platform relationship
     public static function create($bookId, $formatId) {
-        // Check if relationship already exists
         if (self::exists($bookId, $formatId)) {
             return false;
         }
@@ -37,7 +34,6 @@ class BookFormat {
         ]);
     }
 
-    // Delete a specific game-platform relationship
     public static function remove($bookId, $formatId) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
@@ -51,7 +47,6 @@ class BookFormat {
         ]);
     }
 
-    // Delete all platform relationships for a specific game
     public static function deleteBybook($bookId) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("

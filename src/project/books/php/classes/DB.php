@@ -2,11 +2,11 @@
     class DB {
         private static $instance = null;
         private $connection;
-        private $host = 'mysql-container';
-        private $dbname = 'testdb';
+        private $host     = 'mysql-container';
+        private $dbname   = 'testdb';
         private $username = 'testuser';
         private $password = 'mysecret';
-        private $charset = 'utf8mb4';
+        private $charset  = 'utf8mb4';
 
         private function __construct() {
             $dsn = "mysql:host={$this->host};dbname={$this->dbname};charset={$this->charset}";

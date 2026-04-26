@@ -77,20 +77,21 @@
                 
                 <div class="width-12 cards">
                     <?php 
-                    foreach ($books as $book) {
-                        $formats = Format::findByBook($book->id);
-                        $formatIds = [];
-                        foreach ($formats as $f) {
-                            $formatIds[] = $f->id;
-                        }
-                        $formatIdsStr = implode(" ", $formatIds);
-                    ?>
+                        foreach ($books as $book) {
+                            $formats = Format::findByBook($book->id);
+                            $formatIds = [];
+                            foreach ($formats as $f) {
+                                $formatIds[] = $f->id;
+                            }
+                            $formatIdsStr = implode(" ", $formatIds);
+                        ?>
+
                         <div class="card"
                             data-title     ="<?= htmlspecialchars($book->title) ?>"
                             data-author    ="<?= htmlspecialchars($book->author) ?>"
                             data-publisher ="<?= htmlspecialchars($book->publisher_id) ?>"
-                            data-format_ids="<?= htmlspecialchars($formatIdsStr) ?>"
-                        >
+                            data-format_ids="<?= htmlspecialchars($formatIdsStr) ?>">
+
                             <div class="top-content">
                                 <h2><?= h($book->title) ?></h2>
                                 <p>Year: <?= h($book->year) ?></p>
@@ -109,6 +110,7 @@
                 </div>
             <?php } ?>
         </div>
+        
         <script src="./js/book_filters.js"></script>
     </body>
 </html>
